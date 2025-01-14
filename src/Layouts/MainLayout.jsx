@@ -38,7 +38,7 @@ const MainLayout = () => {
                     <ul className="menu min-h-full w-72 flex flex-col gap-2 mt-5">
                         <li className=''><NavLink to={'/'}>Home</NavLink></li>
                         <li className=''><NavLink to={'/ry'}>Membership</NavLink></li>
-                        <li className=''><NavLink to={'/login'}>Join Us</NavLink></li>
+                        <li className=''><NavLink to={'/joinus'}>Join Us</NavLink></li>
                     </ul>
                     <button onClick={handleTheme} className="flex ml-4 text-neutral my-2 cursor-pointer gap-2 mt-4">
                         <svg

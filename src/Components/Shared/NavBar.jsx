@@ -14,7 +14,7 @@ const NavBar = () => {
 
     return (
         <div className="xl:px-28 lg:px-20 px-4 navbar sticky top-0 bg-base-100 w-full">
-            <div className="flex-none lg:hidden">
+            <div className="flex-none md:hidden">
                 <label htmlFor="my-drawer-3" aria-label="open sidebar" className="">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -31,18 +31,18 @@ const NavBar = () => {
             </div>
             <div className="mx-2 flex-1 px-2">
                 <h1 className='lg:text-3xl text-2xl  text-neutral font-semibold'>Talkify</h1>
-                <div className='ml-10 hidden lg:flex'>
+                <div className='ml-10 hidden md:flex'>
                     <ul className="flex text-neutral items-center">
                         <li className='px-4'><NavLink to={'/'}>Home</NavLink></li>
                         <li className='px-4'><NavLink >Membership</NavLink></li>
-                        <li className='px-4'><NavLink to={'/login'}>Join Us</NavLink></li>
+                        <li className='px-4'><NavLink to={'/joinus'}>Join Us</NavLink></li>
                     </ul>
                 </div>
             </div>
 
             <div className="flex gap-1 lg:gap-3 items-center">
                 <div>
-                    <button onClick={handleTheme} className="lg:flex ml-3 text-neutral my-2 cursor-pointer gap-2 hidden ">
+                    <button onClick={handleTheme} className="md:flex ml-3 text-neutral my-2 cursor-pointer gap-2 hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
