@@ -1,9 +1,8 @@
 import React from 'react';
-import NavBar from '../Components/Shared/NavBar';
-import { NavLink, Outlet } from 'react-router-dom';
-import Footer from '../Components/Shared/Footer';
+import { NavLink } from 'react-router-dom';
+import MyProfile from '../Components/Pages/Dashboard/MyProfile';
 
-const MainLayout = () => {
+const UserDashboard = () => {
 
     const handleTheme = () => {
         const htmlElement = document.documentElement;
@@ -13,33 +12,22 @@ const MainLayout = () => {
     };
 
     return (
-        <div className="drawer">
-            <input
-                id="my-drawer-3"
-                type="checkbox"
-                className="drawer-toggle"
-            />
-
-            <div className="drawer-content flex flex-col">
-                <NavBar></NavBar>
-                <div className=''>
-                    <Outlet></Outlet>
+        <div className="drawer lg:drawer-open">
+            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+                <div>
+                    <MyProfile></MyProfile>
                 </div>
-                <Footer></Footer>
             </div>
-
             <div className="drawer-side">
-                <label
-                    htmlFor="my-drawer-3"
-                    aria-label="close sidebar"
-                    className="drawer-overlay">
-                </label>
-                <div className='min-h-screen bg-secondary px-4'>
-                    <ul className="menu min-h-full w-60 flex flex-col gap-1 mt-5">
-                        <li className=''><NavLink to={'/'}>Home</NavLink></li>
-                        <li className=''><NavLink to={'/ry'}>Membership</NavLink></li>
+                <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+                <div className='bg-secondary min-h-screen pl-4'>
+                    <ul className="menu min-h-full w-60 lg:w-72 pt-5 text-white">
+                        {/* Sidebar content here */}
+                        <li><NavLink to={'/'}>Home</NavLink></li>
+                        <li><NavLink to={'/user/dashboard/'}>My Profile</NavLink></li>
                     </ul>
-                    <button onClick={handleTheme} className="flex ml-4 text-neutral my-2 cursor-pointer gap-2 mt-4">
+                    <button onClick={handleTheme} className="flex ml-4 text-neutral my-2 cursor-pointer gap-2 ">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
@@ -74,4 +62,4 @@ const MainLayout = () => {
     );
 };
 
-export default MainLayout;
+export default UserDashboard;

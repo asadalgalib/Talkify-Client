@@ -1,17 +1,16 @@
-import { useState } from 'react';
 import signup from '../../../assets/Signup.jpg'
 import Google from './Google';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../../Custom/Hooks/useAuth';
 import { useForm } from "react-hook-form"
-import axios from 'axios';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../../Custom/Hooks/useAxiosPublic'
 
 
 const Signup = () => {
-    const { user, setUser, createUser, updateUserProfile } = useAuth()
-    const navigate = useNavigate()
-    const [isPass, serIsPass] = useState(true);
+    const { user, setUser, createUser, updateUserProfile, logOutUser } = useAuth()
+    const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (userData) => {
@@ -20,7 +19,11 @@ const Signup = () => {
         const { name, photo, email } = userData;
 
         if (user) {
-            return alert('You are already loged in');
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "You are already loged in!",
+            });
         }
 
         createUser(userData.email, userData.password)
@@ -29,17 +32,18 @@ const Signup = () => {
                 console.log(result.user);
                 updateUserProfile({ displayName: name, photoURL: photo });
 
-                axios.post('http://localhost:5000/users', { name, email, photo })
+                axiosPublic.post('/users', { name, email, photo })
                     .then(res => {
-                        if(res.data.insertedId){
+                        if (res.data.insertedId) {
                             Swal.fire({
                                 position: "center",
                                 icon: "success",
                                 title: "Account created Successfully",
                                 showConfirmButton: false,
                                 timer: 1500
-                              });
-                              navigate('/')
+                            });
+                            logOutUser()
+                            navigate('/joinus/login');
                         }
                     })
                     .catch(err => {
@@ -118,6 +122,8 @@ const Signup = () => {
                             {errors.email && <span className='flex text-red-500'>Please enter a valid Email</span>}
                             {errors.password && <span className='flex text-red-500'>Password must have an uppercase, a lowercase & at least 6 character long</span>}
                         </div>
+                    </form>
+                    <div>
                         <div className="flex items-center justify-center my-4 text-white">OR</div>
                         <Google></Google>
                         <div className='mt-4'>
@@ -126,7 +132,7 @@ const Signup = () => {
                                 <Link to={'/joinus/login'}><span className='text-white p-1 underline font-semibold'>Login here</span></Link>
                             </p>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

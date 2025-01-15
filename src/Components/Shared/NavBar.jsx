@@ -74,32 +74,37 @@ const NavBar = () => {
                         </svg>
                     </button>
                 </div>
-                <div className='text-3xl text-accent p-2 rounded cursor-pointer'>
+                <div className='text-3xl p-2 rounded cursor-pointer'>
                     <p><MdNotificationsActive /></p>
                 </div>
                 <div>
                     {
-                        user == null ? <NavLink className='px-6 py-2 bg-secondary rounded-md text-white font-semibold' to={'/joinus/login'}>Join Us</NavLink> :
+                        user == null ?
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className='px-6 py-2 bg-secondary rounded-md text-white font-semibold'>Join Us</div>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-md z-[1] w-40 mt-4">
+                                    <Link to={'/joinus/login'}><li className='py-2 rounded pl-5 my-1 bg-secondary font-semibold text-white'>Login</li></Link>
+                                    <Link to={'/joinus/signup'}><li className='py-2 rounded pl-5 my-1 bg-secondary font-semibold text-white'>Signup</li></Link>
+                                </ul>
+                            </div>
+                            :
                             <div className="dropdown dropdown-end">
                                 <div tabIndex={0} role="button" className="avatar">
                                     <div className="w-10 rounded-full">
                                         <img
                                             alt="Tailwind CSS Navbar component"
-                                            src={user?.photo} />
+                                            src={user?.photoURL} />
                                     </div>
                                 </div>
-                                <ul
+                                <div
                                     tabIndex={0}
-                                    className="menu menu-sm dropdown-content bg-base-100 rounded z-[1] mt-4 w-52 p-2 shadow">
-                                    <li>
-                                        <p className="justify-between">
-                                            {user.displayName}
-                                            <span className="badge bg-secondary text-white py-1">Verified</span>
-                                        </p>
-                                    </li>
-                                    <li><Link>Dashboard</Link></li>
-                                    <li><button onClick={logOutUser}>Logout</button></li>
-                                </ul>
+                                    className=" dropdown-content bg-base-100 rounded z-[1] mt-4 w-52 p-2 shadow">
+                                    <p className="bg-secondary rounded pl-5 py-1 mb-2 font-semibold text-white">{user.displayName}</p>
+                                    <ul className='py-1 font-semibold text-white '>
+                                        <Link to={'/user/dashboard'}><li className='py-1 rounded pl-5 mb-1 bg-accent'>Dashboard</li></Link>
+                                        <li className='py-1 rounded pl-5 bg-accent'><button onClick={logOutUser}>Logout</button></li>
+                                    </ul>
+                                </div>
                             </div>
                     }
                 </div>

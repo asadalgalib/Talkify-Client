@@ -18,13 +18,16 @@ const Login = () => {
         const { name, photo, email } = userData;
 
         if (user) {
-            return alert('You are already loged in');
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "You are already loged in!",
+            });
         }
 
         logInUser(userData.email, userData.password)
             .then(result => {
                 console.log(result.user);
-
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -32,8 +35,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/')
-
+                navigate('/');
             })
             .catch(err => {
                 console.log(err.code);
@@ -82,15 +84,17 @@ const Login = () => {
                             {errors.email && <span className='flex text-red-500'>Please enter a valid Email</span>}
                             {errors.password && <span className='flex text-red-500'>Password must have an uppercase, a lowercase & at least 6 character long</span>}
                         </div>
+                    </form>
+                    <div>
                         <div className="flex items-center justify-center my-4 text-white">OR</div>
                         <Google></Google>
                         <div className='mt-4'>
                             <p className='text-white text-center'>
-                                Don't have an account?
-                                <Link to={'/joinus/signup'}><span className='text-white p-1 underline font-semibold'>Register here</span></Link>
+                                Already have an account?
+                                <Link to={'/joinus/signup'}><span className='text-white p-1 underline font-semibold'>Signup here</span></Link>
                             </p>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
