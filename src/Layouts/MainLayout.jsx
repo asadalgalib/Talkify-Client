@@ -22,7 +22,7 @@ const MainLayout = () => {
 
             <div className="drawer-content flex flex-col">
                 <NavBar></NavBar>
-                <div className='min-h-screen'>
+                <div className=''>
                     <Outlet></Outlet>
                 </div>
                 <Footer></Footer>
@@ -35,7 +35,7 @@ const MainLayout = () => {
                     className="drawer-overlay">
                 </label>
                 <div className='min-h-screen bg-base-100 px-4'>
-                    <ul className="menu min-h-full w-72 flex flex-col gap-2 mt-5">
+                    <ul className="menu min-h-full w-60 flex flex-col gap-1 mt-5">
                         <li className=''><NavLink to={'/'}>Home</NavLink></li>
                         <li className=''><NavLink to={'/ry'}>Membership</NavLink></li>
                         <li className=''><NavLink to={'/joinus'}>Join Us</NavLink></li>

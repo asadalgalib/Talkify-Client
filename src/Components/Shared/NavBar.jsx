@@ -35,7 +35,7 @@ const NavBar = () => {
                     <ul className="flex text-neutral items-center">
                         <li className='px-4'><NavLink to={'/'}>Home</NavLink></li>
                         <li className='px-4'><NavLink >Membership</NavLink></li>
-                        <li className='px-4'><NavLink to={'/joinus'}>Join Us</NavLink></li>
+                        <li className='px-4'><NavLink to={'/joinus/login'}>Join Us</NavLink></li>
                     </ul>
                 </div>
             </div>

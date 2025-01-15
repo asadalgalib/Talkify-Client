@@ -19,7 +19,7 @@ const Router = createBrowserRouter([
                 element : <JoinusLayout></JoinusLayout>,
                 children : [
                     {
-                        path : '/joinus/',
+                        path : '/joinus/login',
                         element : <Login></Login>
                     },
                     {
