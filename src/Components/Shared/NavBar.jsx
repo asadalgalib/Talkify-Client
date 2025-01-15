@@ -1,9 +1,11 @@
 import React from 'react';
 import { MdNotificationsActive } from 'react-icons/md';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './NavBar.css'
+import useAuth from '../../Custom/Hooks/useAuth';
 
 const NavBar = () => {
+    const { user, logOutUser } = useAuth()
 
     const handleTheme = () => {
         const htmlElement = document.documentElement;
@@ -35,7 +37,7 @@ const NavBar = () => {
                     <ul className="flex text-neutral items-center">
                         <li className='px-4'><NavLink to={'/'}>Home</NavLink></li>
                         <li className='px-4'><NavLink >Membership</NavLink></li>
-                        <li className='px-4'><NavLink to={'/joinus/login'}>Join Us</NavLink></li>
+                        <li className='px-4'></li>
                     </ul>
                 </div>
             </div>
@@ -73,30 +75,33 @@ const NavBar = () => {
                     </button>
                 </div>
                 <div className='text-3xl text-accent p-2 rounded cursor-pointer'>
-                <p><MdNotificationsActive /></p>
+                    <p><MdNotificationsActive /></p>
                 </div>
                 <div>
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="avatar">
-                            <div className="w-10 rounded-full">
-                                <img
-                                    alt="Tailwind CSS Navbar component"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    {
+                        user == null ? <NavLink className='px-6 py-2 bg-secondary rounded-md text-white font-semibold' to={'/joinus/login'}>Join Us</NavLink> :
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img
+                                            alt="Tailwind CSS Navbar component"
+                                            src={user?.photo} />
+                                    </div>
+                                </div>
+                                <ul
+                                    tabIndex={0}
+                                    className="menu menu-sm dropdown-content bg-base-100 rounded z-[1] mt-4 w-52 p-2 shadow">
+                                    <li>
+                                        <p className="justify-between">
+                                            {user.displayName}
+                                            <span className="badge bg-secondary text-white py-1">Verified</span>
+                                        </p>
+                                    </li>
+                                    <li><Link>Dashboard</Link></li>
+                                    <li><button onClick={logOutUser}>Logout</button></li>
+                                </ul>
                             </div>
-                        </div>
-                        <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded z-[1] mt-3 w-52 p-2 shadow">
-                            <li>
-                                <a className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
-                        </ul>
-                    </div>
+                    }
                 </div>
             </div>
         </div>

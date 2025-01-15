@@ -2,19 +2,44 @@ import React, { useState } from 'react';
 import login from '../../../assets/Login.jpg'
 import { FaEye } from 'react-icons/fa';
 import Google from './Google';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from "react-hook-form"
+import useAuth from '../../../Custom/Hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Login = () => {
-    const [isPass, serIsPass] = useState(true);
-    console.log(isPass);
+    const { user, logInUser } = useAuth()
+    const navigate = useNavigate()
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const handlepass = () => {
-        serIsPass(!isPass);
+    const onSubmit = (userData) => {
+        console.log(userData)
+
+        const { name, photo, email } = userData;
+
+        if (user) {
+            return alert('You are already loged in');
+        }
+
+        logInUser(userData.email, userData.password)
+            .then(result => {
+                console.log(result.user);
+
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/')
+
+            })
+            .catch(err => {
+                console.log(err.code);
+            })
     }
 
-    const handleform = e => {
-        e.preventDefault();
-    }
     return (
         <div className='grid grid-cols-1 lg:grid-cols-[2.5fr_3fr] items-center bg-accent justify-between'>
             <div className='' >
@@ -26,22 +51,36 @@ const Login = () => {
                     <p className='text-white mt-2 text-center'>Use your credentials to access your account.</p>
                 </div>
                 <div className="w-full max-w-md">
-                    <form onSubmit={handleform} className="">
+                    <form onSubmit={handleSubmit(onSubmit)} className="">
                         <div className="form-control">
                             <p className='text-white my-2'>Email</p>
                             <label className="input flex items-center gap-2">
-                                <input type="text" className="grow" placeholder="Email" />
+                                <input type="text" {...register('email', {
+                                    required: 'Email is required',
+                                    pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ }
+                                })}
+                                    className="grow" placeholder="Email" />
                             </label>
                         </div>
                         <div className="form-control">
                             <p className='text-white my-2'>Password</p>
                             <label className="input flex items-center gap-2">
-                                <input type={`${isPass ? 'password' : 'text'}`} className="grow" placeholder="password" />
-                                <button onClick={handlepass} className='cursor-pointer'><FaEye></FaEye></button>
+                                <input type='password' {...register('password',
+                                    {
+                                        required: 'Password is required',
+                                        pattern: {
+                                            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/
+                                        },
+                                    })}
+                                    className="grow" placeholder="password" />
                             </label>
                         </div>
                         <div className="form-control mt-5">
                             <button className="bg-secondary font-semibold w-full py-3 text-white text-lg rounded-md">Login</button>
+                        </div>
+                        <div className='my-1'>
+                            {errors.email && <span className='flex text-red-500'>Please enter a valid Email</span>}
+                            {errors.password && <span className='flex text-red-500'>Password must have an uppercase, a lowercase & at least 6 character long</span>}
                         </div>
                         <div className="flex items-center justify-center my-4 text-white">OR</div>
                         <Google></Google>
