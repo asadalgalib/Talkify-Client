@@ -84,13 +84,15 @@ const AddPost = () => {
                             </div>
                             <div className="form-control">
                                 <p className='text-neutral my-2'>Tag</p>
-                                <label className="input input-bordered flex items-center gap-2">
-                                    <select defaultValue='default' className='bg-base-100' {...register("tag", {
+                                <label className=" flex items-center gap-2">
+                                    <select defaultValue='default' className='bg-base-100 select select-bordered w-full' 
+                                    {...register("tag", {
                                         required: "Please select a tag.",
                                     })}>
                                         <option disabled value='default'>select a tag</option>
                                         <option value="React JS">React JS</option>
                                         <option value="Angular JS">Angular JS</option>
+                                        <option value="Vue JS">Vue JS</option>
                                         <option value="Next JS">Next JS</option>
                                     </select>
                                 </label>
@@ -106,11 +108,11 @@ const AddPost = () => {
                                 })} placeholder="description"></textarea>
                             </label>
                         </div>
-                        <label className="form-control w-full max-w-xs">
+                        <label className="form-control w-full">
                             <div className="label">
                                 <p className='text-neutral mt-2'>Pick a image (optional)</p>
                             </div>
-                            <input type="file" {...register('image')} className="file-input file-input-bordered w-full max-w-xs" />
+                            <input type="file" {...register('image')} className="file-input file-input-bordered w-full" />
                         </label>
                         <div className="form-control mt-5">
                             <button className="bg-secondary font-semibold w-full py-3 text-white text-lg rounded-md">Post</button>

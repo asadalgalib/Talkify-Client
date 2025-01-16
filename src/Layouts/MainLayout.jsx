@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../Components/Shared/NavBar';
 import { NavLink, Outlet } from 'react-router-dom';
 import Footer from '../Components/Shared/Footer';
+import { ToastContainer } from 'react-toastify';
 
 const MainLayout = () => {
 
@@ -26,6 +27,7 @@ const MainLayout = () => {
                     <Outlet></Outlet>
                 </div>
                 <Footer></Footer>
+                <ToastContainer position="top-center" autoClose="2000" />
             </div>
 
             <div className="drawer-side">

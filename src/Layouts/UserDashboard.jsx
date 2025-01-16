@@ -36,9 +36,8 @@ const UserDashboard = () => {
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <div className='bg-secondary min-h-screen pl-6'>
-                    <ul className="min-h-full w-60 lg:w-72 pt-16 lg:pt-5 space-y-2 text-neutral">
+                    <ul className="min-h-full w-60 xl:w-72 pt-16 lg:pt-5 space-y-2 text-neutral">
                         {/* Sidebar content here */}
-                        <li className='mb-1 text-lg font-medium'><Link to={'/user/dashboard/'}>Home</Link></li>
                         <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/profile'}>My Profile</NavLink></li>
                         <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/addpost'}>Add Post</NavLink></li>
                         {/* <li><NavLink >My Posts</NavLink></li> */}

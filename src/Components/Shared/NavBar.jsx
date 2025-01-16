@@ -101,8 +101,8 @@ const NavBar = () => {
                                     className=" dropdown-content bg-base-100 rounded z-[1] mt-4 w-52 p-2 shadow">
                                     <p className="bg-secondary rounded pl-5 py-1 mb-2 font-semibold text-white">{user.displayName}</p>
                                     <ul className='py-1 font-semibold text-white '>
-                                        <Link to={'/user/dashboard/'}><li className='py-1 rounded pl-5 mb-1 bg-accent'>Dashboard</li></Link>
-                                        <li className='py-1 rounded pl-5 bg-accent'><button onClick={logOutUser}>Logout</button></li>
+                                        <Link to={'/user/dashboard/profile'}><li className='py-1 rounded pl-5 mb-1 bg-accent'>Dashboard</li></Link>
+                                        <li onClick={logOutUser} className='py-1 rounded pl-5 bg-accent cursor-pointer'><button >Logout</button></li>
                                     </ul>
                                 </div>
                             </div>
