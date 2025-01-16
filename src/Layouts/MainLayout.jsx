@@ -34,12 +34,12 @@ const MainLayout = () => {
                     aria-label="close sidebar"
                     className="drawer-overlay">
                 </label>
-                <div className='min-h-screen bg-secondary px-4'>
-                    <ul className="menu min-h-full w-60 flex flex-col gap-1 mt-5">
-                        <li className=''><NavLink to={'/'}>Home</NavLink></li>
-                        <li className=''><NavLink to={'/ry'}>Membership</NavLink></li>
+                <div className='min-h-screen bg-base-100 px-6'>
+                    <ul className="min-h-full w-60 flex flex-col gap-1 lg:mt-5 mt-16 text-neutral">
+                        <li className='mt-1 text-lg font-medium'><NavLink to={'/'}>Home</NavLink></li>
+                        <li className='mt-1 text-lg font-medium'><NavLink to={'/ry'}>Membership</NavLink></li>
                     </ul>
-                    <button onClick={handleTheme} className="flex ml-4 text-neutral my-2 cursor-pointer gap-2 mt-4">
+                    <button onClick={handleTheme} className="flex text-neutral my-2 cursor-pointer gap-2 mt-4">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"

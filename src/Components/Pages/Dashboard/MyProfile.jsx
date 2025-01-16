@@ -6,21 +6,9 @@ import gold from '../../../assets/gold.png'
 const MyProfile = () => {
     const { user } = useAuth()
     return (
-        <div className='relative mb-16'>
-            <div className='lg:min-h-72 md:min-h-60 min-h-48 bg-accent'>
-                <label htmlFor="my-drawer-2" aria-label="open sidebar" className="ml-2 mt-4 text-white lg:hidden">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        className="inline-block h-6 w-6 mr-5 stroke-current">
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </label>
+        <div className='relative mb-12'>
+            <div className='lg:min-h-60 md:min-h-62 min-h-40 bg-accent'>
+                
             </div>
             <div className=''>
                 <div className="avatar -mt-20 flex flex-col items-center justify-center">
@@ -28,8 +16,8 @@ const MyProfile = () => {
                         <img src={user?.photoURL} />
                     </div>
                 </div>
-                <div className=' bg-base-100 mt-5 lg:px-14 md:px-8 px-4 lg:mx-14 md:mx-8 mx-4 py-16 rounded-md'>
-                    <div className='lg:flex text-start gap-10 items-center justify-around '>
+                <div className=' bg-base-100 mt-5 lg:px-14 md:px-8 px-4 lg:mx-14 md:mx-8 mx-4 lg:py-16 md:py-10 py-8 rounded-md'>
+                    <div className='lg:flex text-start gap-5 items-center justify-around '>
                         <div className=''>
                             <h1 className='lg:text-2xl text-xl font-semibold text-center text-neutral'>My Info</h1>
                             <div className="divider"></div>
@@ -45,10 +33,11 @@ const MyProfile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex items-center justify-center mt-16'>
+                    <div className='flex items-center justify-center mt-10'>
                         <ul className="timeline timeline-vertical xl:timeline-horizontal">
                             <li>
-                                <div className="timeline-start timeline-box">Registered user will get Bronze Medal</div>
+                                <hr className='bg-secondary' />
+                                <div className="timeline-start timeline-box bg-accent text-white">Registered user will get Bronze Medal</div>
                                 <div className="timeline-middle">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -61,11 +50,11 @@ const MyProfile = () => {
                                             clipRule="evenodd" />
                                     </svg>
                                 </div>
-                                <hr />
+                                <hr className='bg-secondary' />
                             </li>
                             <li>
-                                <hr />
-                                <div className="timeline-start timeline-box">Premium user will get Gold Medal</div>
+                                <hr className='bg-secondary' />
+                                <div className="timeline-end timeline-box bg-accent text-white">Premium user will get Gold Medal</div>
                                 <div className="timeline-middle">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

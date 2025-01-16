@@ -1,6 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import MyProfile from '../Components/Pages/Dashboard/MyProfile';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 
 const UserDashboard = () => {
 
@@ -16,18 +15,38 @@ const UserDashboard = () => {
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 <div>
-                    <MyProfile></MyProfile>
+                    <div className='bg-secondary py-2 lg:hidden sticky top-0 z-50'>
+                        <label htmlFor="my-drawer-2" aria-label="open sidebar" className="ml-5 text-neutral">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                className="inline-block h-8 w-8 mr-5 stroke-current">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </label>
+                    </div>
+                    <Outlet></Outlet>
                 </div>
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                <div className='bg-secondary min-h-screen pl-4'>
-                    <ul className="menu min-h-full w-60 lg:w-72 pt-5 text-white">
+                <div className='bg-secondary min-h-screen pl-6'>
+                    <ul className="min-h-full w-60 lg:w-72 pt-16 lg:pt-5 space-y-2 text-neutral">
                         {/* Sidebar content here */}
-                        <li><NavLink to={'/'}>Home</NavLink></li>
-                        <li><NavLink to={'/user/dashboard/'}>My Profile</NavLink></li>
+                        <li className='mb-1 text-lg font-medium'><Link to={'/user/dashboard/'}>Home</Link></li>
+                        <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/profile'}>My Profile</NavLink></li>
+                        <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/addpost'}>Add Post</NavLink></li>
+                        {/* <li><NavLink >My Posts</NavLink></li> */}
+                        <div className="divider divider-info mr-6"></div>
+                        <li className='mb-1 text-lg font-medium'><NavLink to={'/'}>Home</NavLink></li>
+                        <li className='mb-1 text-lg font-medium'><NavLink to={'/'}>Membership</NavLink></li>
                     </ul>
-                    <button onClick={handleTheme} className="flex ml-4 text-neutral my-2 cursor-pointer gap-2 ">
+                    <button onClick={handleTheme} className="flex text-neutral mt-5 cursor-pointer gap-2 ">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"

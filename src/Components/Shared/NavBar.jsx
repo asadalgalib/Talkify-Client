@@ -15,7 +15,7 @@ const NavBar = () => {
     };
 
     return (
-        <div className="xl:px-28 lg:px-20 px-4 navbar sticky top-0 bg-base-100 w-full">
+        <div className="xl:px-28 lg:px-20 px-4 navbar sticky top-0 z-50 bg-base-100 w-full">
             <div className="flex-none md:hidden">
                 <label htmlFor="my-drawer-3" aria-label="open sidebar" className="">
                     <svg
@@ -101,7 +101,7 @@ const NavBar = () => {
                                     className=" dropdown-content bg-base-100 rounded z-[1] mt-4 w-52 p-2 shadow">
                                     <p className="bg-secondary rounded pl-5 py-1 mb-2 font-semibold text-white">{user.displayName}</p>
                                     <ul className='py-1 font-semibold text-white '>
-                                        <Link to={'/user/dashboard'}><li className='py-1 rounded pl-5 mb-1 bg-accent'>Dashboard</li></Link>
+                                        <Link to={'/user/dashboard/'}><li className='py-1 rounded pl-5 mb-1 bg-accent'>Dashboard</li></Link>
                                         <li className='py-1 rounded pl-5 bg-accent'><button onClick={logOutUser}>Logout</button></li>
                                     </ul>
                                 </div>

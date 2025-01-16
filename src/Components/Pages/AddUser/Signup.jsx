@@ -72,7 +72,6 @@ const Signup = () => {
                                 <p className='text-white my-2'>Name</p>
                                 <label className="input flex items-center gap-2">
                                     <input type="text" {...register('name', {
-                                        required: 'Name is required',
                                         required: 'Name is required', minLength: { value: 3 }
                                     })}
                                         className="grow" placeholder="name" />

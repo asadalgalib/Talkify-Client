@@ -6,6 +6,9 @@ import JoinusLayout from "../Layouts/JoinusLayout";
 import Signup from "../Components/Pages/AddUser/Signup";
 import UserDashboard from "../Layouts/UserDashboard";
 import MyProfile from "../Components/Pages/Dashboard/MyProfile";
+import AddPost from "../Components/Pages/Dashboard/AddPost";
+import UserDashHome from "../Layouts/UserDashHome";
+import UserPrivate from "./UserPrivate";
 
 const Router = createBrowserRouter([
     {
@@ -34,11 +37,19 @@ const Router = createBrowserRouter([
     },
     {
         path: '/user/dashboard',
-        element: <UserDashboard></UserDashboard>,
+        element: <UserPrivate><UserDashboard></UserDashboard></UserPrivate>,
         children: [
             {
                 path: '/user/dashboard/',
-                element: <MyProfile></MyProfile>
+                element: <UserPrivate><UserDashHome></UserDashHome></UserPrivate>
+            },
+            {
+                path: '/user/dashboard/profile',
+                element: <UserPrivate><MyProfile></MyProfile></UserPrivate>
+            },
+            {
+                path: '/user/dashboard/addpost',
+                element : <UserPrivate><AddPost></AddPost></UserPrivate>
             }
         ]
     }
