@@ -34,7 +34,7 @@ const MyProfile = () => {
                 </div>
             </div>
             <div className='flex flex-col-reverse lg:flex-row items-start justify-center gap-5 lg:gap-10 lg:mx-14 md:mx-8 mx-4 py-8'>
-                <div>
+                <div className={` ${ recentPost.length > 0 ? "" : "hidden"}`}>
                     <div className='mb-5 bg-base-100 h-24 shadow rounded-md flex items-center justify-center'>
                         <h1 className='lg:text-3xl text-2xl font-semibold'>My Recent Posts</h1>
                     </div>

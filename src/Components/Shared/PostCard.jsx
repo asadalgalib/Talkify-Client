@@ -2,6 +2,7 @@ import React from 'react';
 import { BiDislike, BiLike } from 'react-icons/bi';
 import { FaRegComment } from 'react-icons/fa';
 import { FaRegShareFromSquare } from 'react-icons/fa6';
+import ReactReadMoreReadLess from "react-read-more-read-less";
 
 const PostCard = ({ post }) => {
     return (
@@ -28,10 +29,21 @@ const PostCard = ({ post }) => {
             <div className='px-2 mt-3'>
                 <h2 className='font-medium'>{post?.title}</h2>
                 {
-                    post?.description && <h2 className='text-wrap mt-1'>{post?.description}</h2>
+                    post?.description && post?.postImage ?
+                        <ReactReadMoreReadLess
+                        className='mt-1'
+                            charLimit={40}
+                            readMoreClassName="font-semibold"
+                            readLessClassName="font-semibold"
+                            readMoreText={"See more..."}
+                            readLessText={"See less..."}>
+                            {post?.description}
+                        </ReactReadMoreReadLess>
+                        :
+                        <h1 className='mt-1'>{post?.description}</h1>
                 }
             </div>
-            <div className='px-2'>
+            <div className='px-2 mb-2'>
                 {
                     post?.tag && <h1><span className="font-semibold"> Tag :</span> {post?.tag}</h1>
                 }
@@ -49,11 +61,11 @@ const PostCard = ({ post }) => {
             <div className='mt-2 px-2 flex items-center justify-between'>
                 <div className='flex gap-2'>
                     <span
-                        className='text-sm badge-secondary px-2 py-1 rounded-md text-white'>
+                        className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
                         {post?.upVote} Up vote
                     </span>
                     <span
-                        className='text-sm badge-secondary px-2 py-1 rounded-md text-white'>
+                        className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
                         {post?.downVote} Down vote
                     </span>
                 </div>
@@ -61,7 +73,7 @@ const PostCard = ({ post }) => {
                     {
                         post?.comment && <span
                             className='text-sm badge-secondary px-2 py-1 rounded-md text-white'>
-                            {post?.upVote} Upvote
+                            {post?.comment} Upvote
                         </span>
                     }
                     {

@@ -40,6 +40,7 @@ const UserDashboard = () => {
                         {/* Sidebar content here */}
                         <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/profile'}>My Profile</NavLink></li>
                         <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/addpost'}>Add Post</NavLink></li>
+                        <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/myposts'}>My Posts</NavLink></li>
                         {/* <li><NavLink >My Posts</NavLink></li> */}
                         <div className="divider divider-info mr-6"></div>
                         <li className='mb-1 text-lg font-medium'><NavLink to={'/'}>Home</NavLink></li>

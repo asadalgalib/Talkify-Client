@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'custom-hero' : "url('/src/assets/bg.jpg')"
+      }
+    },
   },
   plugins: [
     require('daisyui'),
@@ -30,7 +34,7 @@ export default {
           "primary": "#1E1E1E", //
           "secondary": "#2197b5", //
           "accent": "#204cbc",
-          "base-100": "#1E1E1E", 
+          "base-100": "#1E1E1E",
           "info": "#040605",
         },
       },

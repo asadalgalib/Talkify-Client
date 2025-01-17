@@ -6,14 +6,14 @@ import useAuth from "./useAuth";
 const useRecentPost = () => {
     const {user} = useAuth()
     const axiosSecure = useAxiosSecure()
-    const { data: recentPost, isLoading: isPostLoading, error } = useQuery({
+    const { data: recentPost, isLoading: isPostLoading, error,refetch } = useQuery({
         queryKey : ['recentPost'],
         queryFn : async ()=>{
-            const res = await axiosSecure.get(`/recentpost?email=${user.email}`);
+            const res = await axiosSecure.get(`/user/recentpost?email=${user.email}`);
             return res.data;
         }
     })
-    return [ recentPost, isPostLoading ]
+    return [ recentPost, isPostLoading,error,refetch ]
 };
 
 export default useRecentPost;

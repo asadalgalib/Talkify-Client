@@ -9,6 +9,7 @@ import MyProfile from "../Components/Pages/Dashboard/MyProfile";
 import AddPost from "../Components/Pages/Dashboard/AddPost";
 import UserDashHome from "../Layouts/UserDashHome";
 import UserPrivate from "./UserPrivate";
+import MyPosts from "../Components/Pages/Dashboard/MyPosts";
 
 const Router = createBrowserRouter([
     {
@@ -50,7 +51,11 @@ const Router = createBrowserRouter([
             {
                 path: '/user/dashboard/addpost',
                 element : <UserPrivate><AddPost></AddPost></UserPrivate>
-            }
+            },
+            {
+                path: '/user/dashboard/myposts',
+                element : <UserPrivate><MyPosts></MyPosts></UserPrivate>
+            },
         ]
     }
 ])

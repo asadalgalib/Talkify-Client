@@ -3,6 +3,7 @@ import useAuth from '../../../Custom/Hooks/useAuth';
 import useAxiosPublic from '../../../Custom/Hooks/useAxiosPublic'
 import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure'
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const image_hosting_key = import.meta.env.VITE_image_hosting_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -10,6 +11,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const AddPost = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { user } = useAuth();
+    const navigate = useNavigate()
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure()
     let postImage;
@@ -57,6 +59,7 @@ const AddPost = () => {
                         timer: 1500
                     });
                     reset();
+                    navigate('/user/dashboard/myposts');
                 }
             })
             .catch(err => {
@@ -90,10 +93,11 @@ const AddPost = () => {
                                         required: "Please select a tag.",
                                     })}>
                                         <option disabled value='default'>select a tag</option>
-                                        <option value="React JS">React JS</option>
-                                        <option value="Angular JS">Angular JS</option>
-                                        <option value="Vue JS">Vue JS</option>
-                                        <option value="Next JS">Next JS</option>
+                                        <option value="React.js">React.js</option>
+                                        <option value="Angular.js">Angular.js</option>
+                                        <option value="Vue.js">Vue.js</option>
+                                        <option value="Laravel">Laravel</option>
+                                        <option value="Next.js">Next.js</option>
                                     </select>
                                 </label>
                             </div>
