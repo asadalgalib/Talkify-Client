@@ -9,10 +9,11 @@ import { FaRegComment } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
+import DataNotFound from '../../Shared/DataNotFound';
 
 const MyPosts = () => {
     const [userAllPost, isPostLoading, error, refetch] = useUserAllPosts();
-    const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure();
 
     const handleDelete = id => {
         Swal.fire({
@@ -50,21 +51,24 @@ const MyPosts = () => {
     if (isPostLoading) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
     }
+    if(userAllPost.length <= 0){
+        return <DataNotFound></DataNotFound>
+    }
     return (
         <div className='my-10 lg:my-16 min-h-screen lg:mx-14 md:mx-8 mx-4'>
             <div className='mb-5 bg-base-100 h-24 shadow rounded-md flex items-center justify-center'>
                 <h1 className='lg:text-3xl text-2xl font-semibold text-neutral'>My All Posts</h1>
             </div>
-            <div className='bg-base-100 rounded-md shadow p-4 overflow-x-auto'>
+            <div className='bg-base-100 rounded-md shadow overflow-x-auto'>
                 <table className="table min-w-full">
                     {/* head */}
                     <thead>
-                        <tr>
-                            <th className='text-neutral text-base'>#</th>
-                            <th className='text-neutral text-base'>Title</th>
-                            <th className='text-neutral text-base'>Vote</th>
-                            <th className='text-neutral text-base'>Delete</th>
-                            <th className='text-neutral text-base'>Comment</th>
+                        <tr className='bg-secondary rounded text-white'>
+                            <th className=' text-base'>#</th>
+                            <th className=' text-base'>Title</th>
+                            <th className=' text-base'>Vote</th>
+                            <th className=' text-base'>Delete</th>
+                            <th className=' text-base'>Comment</th>
                         </tr>
                     </thead>
                     <tbody>

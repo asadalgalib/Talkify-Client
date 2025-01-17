@@ -4,7 +4,7 @@ const Banner = () => {
 
    
     return (
-        <div className='lg:min-h-[75vh] bg-custom-hero bg-fixed bg-cover md:min-h-[70vh] min-h-[60vh] xl:px-28 lg:px-20 px-4 bg-accent flex flex-col
+        <div className='lg:min-h-[75vh] bg-custom-hero bg-fixed bg-cover md:min-h-[70vh] min-h-[60vh] xl:px-28 lg:px-20 px-4 flex flex-col
          items-center justify-center'>
             <div className='text-center'>
                 <h1 className='lg:text-5xl md:text-4xl text-3xl font-semibold text-white'>Welcome to Talkify</h1>

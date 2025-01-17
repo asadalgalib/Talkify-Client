@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'custom-hero' : "url('/src/assets/bg.jpg')"
+        'custom-hero' : "url('/src/assets/bg.jpg')",
+        'custom-member' : "url('/src/assets/membership.jpg')",
+        'custom-error' : "url('/src/assets/error.png')"
       }
     },
   },

@@ -9,6 +9,7 @@ const UserDashboard = () => {
             htmlElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light'
         );
     };
+    const isAdmin = true;
 
     return (
         <div className="drawer lg:drawer-open">
@@ -36,11 +37,22 @@ const UserDashboard = () => {
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <div className='bg-secondary min-h-screen pl-6'>
-                    <ul className="min-h-full w-60 xl:w-72 pt-16 lg:pt-5 space-y-2 text-neutral">
+                    <ul className="min-h-full w-60 xl:w-72 pt-16 lg:pt-5 mb-2 text-neutral">
                         {/* Sidebar content here */}
-                        <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/profile'}>My Profile</NavLink></li>
-                        <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/addpost'}>Add Post</NavLink></li>
-                        <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/myposts'}>My Posts</NavLink></li>
+                        {/* user route */}
+                        <div>
+                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/profile'}>My Profile</NavLink></li>
+                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/addpost'}>Add Post</NavLink></li>
+                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/myposts'}>My Posts</NavLink></li>
+                        </div>
+                        {/* admin route */}
+                        {/* <div>
+                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/profile'}>Admin Profile</NavLink></li>
+                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/addpost'}>Manage User</NavLink></li>
+                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/myposts'}>Activities</NavLink></li>
+                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/myposts'}>Announcement</NavLink></li>
+                        </div> */}
+                        
                         {/* <li><NavLink >My Posts</NavLink></li> */}
                         <div className="divider divider-info mr-6"></div>
                         <li className='mb-1 text-lg font-medium'><NavLink to={'/'}>Home</NavLink></li>

@@ -15,6 +15,9 @@ const AddPost = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure()
     let postImage;
+    // const upVoteEmail = []
+    // const downVoteEmail = []
+    // const comment = []
 
     let now = new Date()
     const currentDate = now.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -44,7 +47,10 @@ const AddPost = () => {
         }
 
         const postData =
-            { authorName, authorImage, authorEmail, title, tag, postImage, description, upVote, downVote, currentDate, currentTime };
+        {
+            authorName, authorImage, authorEmail, title, tag, postImage, description,
+            upVote, downVote, currentDate, currentTime
+        };
         console.log(postData);
         // post data 
         axiosSecure.post('/post', postData)
@@ -88,10 +94,10 @@ const AddPost = () => {
                             <div className="form-control">
                                 <p className='text-neutral my-2'>Tag</p>
                                 <label className=" flex items-center gap-2">
-                                    <select defaultValue='default' className='bg-base-100 select select-bordered w-full' 
-                                    {...register("tag", {
-                                        required: "Please select a tag.",
-                                    })}>
+                                    <select defaultValue='default' className='bg-base-100 select select-bordered w-full'
+                                        {...register("tag", {
+                                            required: "Please select a tag.",
+                                        })}>
                                         <option disabled value='default'>select a tag</option>
                                         <option value="React.js">React.js</option>
                                         <option value="Angular.js">Angular.js</option>

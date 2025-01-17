@@ -10,11 +10,13 @@ import AddPost from "../Components/Pages/Dashboard/AddPost";
 import UserDashHome from "../Layouts/UserDashHome";
 import UserPrivate from "./UserPrivate";
 import MyPosts from "../Components/Pages/Dashboard/MyPosts";
+import ErrorPage from "../Components/Shared/ErrorPage";
 
 const Router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
