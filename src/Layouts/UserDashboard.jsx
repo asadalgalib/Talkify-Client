@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
+import useIsAdmin from '../Custom/Hooks/useIsAdmin';
 
 const UserDashboard = () => {
+    const [isAdmin,isLoading] = useIsAdmin();
+    // console.log(isAdmin,isLoading);
 
     const handleTheme = () => {
         const htmlElement = document.documentElement;
@@ -9,8 +12,8 @@ const UserDashboard = () => {
             htmlElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light'
         );
     };
-    const isAdmin = true;
 
+    
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -37,23 +40,24 @@ const UserDashboard = () => {
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <div className='bg-secondary min-h-screen pl-6'>
-                    <ul className="min-h-full w-60 xl:w-72 pt-16 lg:pt-5 mb-2 text-neutral">
-                        {/* Sidebar content here */}
-                        {/* user route */}
-                        <div>
-                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/profile'}>My Profile</NavLink></li>
-                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/addpost'}>Add Post</NavLink></li>
-                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/myposts'}>My Posts</NavLink></li>
-                        </div>
-                        {/* admin route */}
-                        {/* <div>
-                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/profile'}>Admin Profile</NavLink></li>
-                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/addpost'}>Manage User</NavLink></li>
-                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/myposts'}>Activities</NavLink></li>
-                            <li className='mb-1 text-lg font-medium'><NavLink to={'/user/dashboard/myposts'}>Announcement</NavLink></li>
-                        </div> */}
-                        
-                        {/* <li><NavLink >My Posts</NavLink></li> */}
+                    <ul className="min-h-full w-60 xl:w-72 pt-16 lg:pt-5 mb-2 text-white">
+                        {
+                            isAdmin ?
+                                // admin route
+                                <div>
+                                    <li className='mb-1 text-lg font-medium'><NavLink to={'/dashboard/admin/profile'}>Admin Profile</NavLink></li>
+                                    <li className='mb-1 text-lg font-medium'><NavLink to={'/dashboard/admin/manageusers'}>Manage User</NavLink></li>
+                                    <li className='mb-1 text-lg font-medium'><NavLink to={'/dashboard/admin/activities'}>Activities</NavLink></li>
+                                    <li className='mb-1 text-lg font-medium'><NavLink to={'/dashboard/admin/announce'}>Announcement</NavLink></li>
+                                </div>
+                                :
+                                // user route
+                                <div>
+                                    <li className='mb-1 text-lg font-medium'><NavLink to={'/dashboard/user/profile'}>My Profile</NavLink></li>
+                                    <li className='mb-1 text-lg font-medium'><NavLink to={'/dashboard/user/addpost'}>Add Post</NavLink></li>
+                                    <li className='mb-1 text-lg font-medium'><NavLink to={'/dashboard/user/myposts'}>My Posts</NavLink></li>
+                                </div>
+                        }
                         <div className="divider divider-info mr-6"></div>
                         <li className='mb-1 text-lg font-medium'><NavLink to={'/'}>Home</NavLink></li>
                         <li className='mb-1 text-lg font-medium'><NavLink to={'/'}>Membership</NavLink></li>

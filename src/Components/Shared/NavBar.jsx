@@ -3,9 +3,11 @@ import { MdNotificationsActive } from 'react-icons/md';
 import { Link, NavLink } from 'react-router-dom';
 import './NavBar.css'
 import useAuth from '../../Custom/Hooks/useAuth';
+import useIsAdmin from '../../Custom/Hooks/useIsAdmin';
 
 const NavBar = () => {
     const { user, logOutUser } = useAuth()
+    const [isAdmin] = useIsAdmin();
 
     const handleTheme = () => {
         const htmlElement = document.documentElement;
@@ -101,7 +103,7 @@ const NavBar = () => {
                                     className=" dropdown-content bg-base-100 rounded z-[1] mt-4 w-52 p-2 shadow">
                                     <p className="bg-secondary rounded pl-5 py-1 mb-2 font-semibold text-white">{user.displayName}</p>
                                     <ul className='py-1 font-semibold text-white '>
-                                        <Link to={'/user/dashboard/profile'}><li className='py-1 rounded pl-5 mb-1 bg-accent'>Dashboard</li></Link>
+                                        <Link to={`${isAdmin ? '/dashboard/admin/profile' : '/dashboard/user/profile'}`}><li className='py-1 rounded pl-5 mb-1 bg-accent'>Dashboard</li></Link>
                                         <li onClick={logOutUser} className='py-1 rounded pl-5 bg-accent cursor-pointer'><button >Logout</button></li>
                                     </ul>
                                 </div>

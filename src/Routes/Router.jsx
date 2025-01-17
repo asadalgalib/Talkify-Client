@@ -7,10 +7,14 @@ import Signup from "../Components/Pages/AddUser/Signup";
 import UserDashboard from "../Layouts/UserDashboard";
 import MyProfile from "../Components/Pages/Dashboard/MyProfile";
 import AddPost from "../Components/Pages/Dashboard/AddPost";
-import UserDashHome from "../Layouts/UserDashHome";
 import UserPrivate from "./UserPrivate";
 import MyPosts from "../Components/Pages/Dashboard/MyPosts";
 import ErrorPage from "../Components/Shared/ErrorPage";
+import AdminProfile from "../Components/Pages/Dashboard/AdminProfile";
+import ManageUsers from "../Components/Pages/Dashboard/ManageUsers";
+import Activities from "../Components/Pages/Dashboard/Activities";
+import Announce from "../Components/Pages/Dashboard/Announce";
+import AdminPrivate from "./AdminPrivate";
 
 const Router = createBrowserRouter([
     {
@@ -39,24 +43,38 @@ const Router = createBrowserRouter([
         ]
     },
     {
-        path: '/user/dashboard',
+        path: '/dashboard',
         element: <UserPrivate><UserDashboard></UserDashboard></UserPrivate>,
         children: [
+            // user dashboard
             {
-                path: '/user/dashboard/',
-                element: <UserPrivate><UserDashHome></UserDashHome></UserPrivate>
-            },
-            {
-                path: '/user/dashboard/profile',
+                path: '/dashboard/user/profile',
                 element: <UserPrivate><MyProfile></MyProfile></UserPrivate>
             },
             {
-                path: '/user/dashboard/addpost',
+                path: '/dashboard/user/addpost',
                 element : <UserPrivate><AddPost></AddPost></UserPrivate>
             },
             {
-                path: '/user/dashboard/myposts',
+                path: '/dashboard/user/myposts',
                 element : <UserPrivate><MyPosts></MyPosts></UserPrivate>
+            },
+            // admin dashboard
+            {
+                path: '/dashboard/admin/profile',
+                element : <AdminPrivate><AdminProfile></AdminProfile></AdminPrivate>
+            },
+            {
+                path: '/dashboard/admin/manageusers',
+                element : <AdminPrivate><ManageUsers></ManageUsers></AdminPrivate>
+            },
+            {
+                path: '/dashboard/admin/activities',
+                element : <AdminPrivate><Activities></Activities></AdminPrivate>
+            },
+            {
+                path: '/dashboard/admin/announce',
+                element : <AdminPrivate><Announce></Announce></AdminPrivate>
             },
         ]
     }
