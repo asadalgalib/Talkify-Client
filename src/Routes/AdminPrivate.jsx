@@ -5,7 +5,8 @@ import useIsAdmin from '../Custom/Hooks/useIsAdmin';
 const AdminPrivate = ({ children }) => {
     const location = useLocation();
     const { loading, user } = useAuth();
-    const [isAdmin] = useIsAdmin()
+    const [isAdmin,isPending] = useIsAdmin()
+    console.log(isAdmin);
 
     if (loading) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>

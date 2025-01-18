@@ -8,6 +8,7 @@ import useIsAdmin from '../../Custom/Hooks/useIsAdmin';
 const NavBar = () => {
     const { user, logOutUser } = useAuth()
     const [isAdmin] = useIsAdmin();
+    console.log(isAdmin);
 
     const handleTheme = () => {
         const htmlElement = document.documentElement;

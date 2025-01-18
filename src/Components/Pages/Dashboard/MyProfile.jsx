@@ -3,10 +3,6 @@ import useAuth from '../../../Custom/Hooks/useAuth';
 import bronze from '../../../assets/bronze.png'
 import gold from '../../../assets/gold.png'
 import useRecentPost from '../../../Custom/Hooks/useRecentPost';
-import { GrLike } from 'react-icons/gr';
-import { BiDislike, BiLike, BiSolidLike } from 'react-icons/bi';
-import { FaRegComment } from 'react-icons/fa';
-import { FaRegShareFromSquare } from 'react-icons/fa6';
 import PostCard from '../../Shared/PostCard';
 
 const MyProfile = () => {

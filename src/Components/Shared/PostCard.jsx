@@ -34,7 +34,7 @@ const PostCard = ({ post, refetch }) => {
 
 
     return (
-        <div className="rounded-md bg-base-100 max-w-2xl py-2 shadow">
+        <div className="rounded-md bg-base-100 max-w-3xl py-2 shadow">
             <div className='px-2'>
                 <div className='flex items-end gap-3'>
                     <div className="avatar">

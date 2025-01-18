@@ -53,6 +53,7 @@ const ManageUsers = () => {
                     <thead>
                         <tr className='bg-secondary rounded text-white'>
                             <th className=' text-base'>#</th>
+                            <th className=' text-base'>Photo</th>
                             <th className=' text-base'>Name</th>
                             <th className=' text-base'>Email</th>
                             <th className=' text-base'>Role</th>
@@ -64,6 +65,15 @@ const ManageUsers = () => {
                             userData?.map((user, index) =>
                                 <tr key={user._id} className='hover'>
                                     <th className='text-neutral'>{index + 1}</th>
+                                    <td>
+                                        <div className="avatar">
+                                            <div className="mask rounded-full h-12 w-12">
+                                                <img
+                                                    src={user.photo}
+                                                    alt="Avatar" />
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td className='text-neutral font-semibold'>{user.name}</td>
                                     <td className="text-neutral">{user.email}</td>
                                     <td className='text-neutral'>

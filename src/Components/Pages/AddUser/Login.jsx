@@ -6,16 +6,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../../../Custom/Hooks/useAuth';
 import Swal from 'sweetalert2';
+import useIsAdmin from '../../../Custom/Hooks/useIsAdmin';
 
 const Login = () => {
-    const { user, logInUser } = useAuth()
+    const { user, logInUser } = useAuth();
     const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (userData) => {
         console.log(userData)
-
-        const { name, photo, email } = userData;
 
         if (user) {
             return Swal.fire({
@@ -27,7 +26,6 @@ const Login = () => {
 
         logInUser(userData.email, userData.password)
             .then(result => {
-                console.log(result.user);
                 Swal.fire({
                     position: "center",
                     icon: "success",

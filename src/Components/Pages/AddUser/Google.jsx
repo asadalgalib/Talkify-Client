@@ -24,7 +24,7 @@ const Google = () => {
                 const name = result.user.displayName;
                 const email = result.user.email;
                 const photo = result.user.photoURL
-                axiosPublic.post('http://localhost:5000/users', { name, email, photo })
+                axiosPublic.post('/users', { name, email, photo })
                     .then(res => {
                         Swal.fire({
                             position: "center",

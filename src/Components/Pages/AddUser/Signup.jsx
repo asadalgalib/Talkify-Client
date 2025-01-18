@@ -29,7 +29,6 @@ const Signup = () => {
         createUser(userData.email, userData.password)
             .then(result => {
                 setUser(result.user);
-                console.log(result.user);
                 updateUserProfile({ displayName: name, photoURL: photo });
 
                 axiosPublic.post('/users', { name, email, photo })
@@ -42,7 +41,7 @@ const Signup = () => {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-                            logOutUser()
+                            logOutUser();
                             navigate('/joinus/login');
                         }
                     })
