@@ -74,7 +74,7 @@ const ManageUsers = () => {
     }
 
     return (
-        <div className='lg:my-14 md:my-8 my-4 min-h-screen lg:mx-14 md:mx-8 mx-4'>
+        <div className='lg:my-14 md:my-8 my-4 min-h-screen lg:mx-14 md:mx-8 mx-4 mb-10'>
             <div className='mb-5 bg-base-100 lg:py-10 py-5 lg:px-12 px-5 shadow rounded-md flex items-center justify-center'>
                 <h1 className='lg:text-3xl text-2xl font-semibold text-neutral'>Manage Total {userData?.length} User</h1>
             </div>

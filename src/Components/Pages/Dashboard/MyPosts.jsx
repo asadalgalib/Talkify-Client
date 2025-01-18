@@ -52,7 +52,7 @@ const MyPosts = () => {
         return <DataNotFound></DataNotFound>
     }
     return (
-        <div className='my-10 lg:my-16 min-h-screen lg:mx-14 md:mx-8 mx-4'>
+        <div className='my-10 lg:my-16 min-h-screen lg:mx-14 md:mx-8 mx-4 mb-10'>
             <div className='mb-5 bg-base-100 h-24 shadow rounded-md flex items-center justify-center'>
                 <h1 className='lg:text-3xl text-2xl font-semibold text-neutral'>My All Posts</h1>
             </div>

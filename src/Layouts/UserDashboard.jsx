@@ -19,7 +19,7 @@ const UserDashboard = () => {
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 <div>
-                    <div className='bg-secondary py-2 lg:hidden sticky top-0 z-50'>
+                    <div className='bg-secondary py-2 lg:hidden sticky top-0 z-40'>
                         <label htmlFor="my-drawer-2" aria-label="open sidebar" className="ml-5 text-neutral">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ const UserDashboard = () => {
                     <Outlet></Outlet>
                 </div>
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side z-50">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <div className='bg-secondary min-h-screen pl-6'>
                     <ul className="min-h-full w-60 xl:w-72 pt-16 lg:pt-5 mb-2 text-white">

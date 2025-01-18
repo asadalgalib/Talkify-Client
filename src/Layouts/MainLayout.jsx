@@ -30,14 +30,14 @@ const MainLayout = () => {
                 <ToastContainer position="top-center" autoClose="2000" />
             </div>
 
-            <div className="drawer-side">
+            <div className="drawer-side z-50">
                 <label
                     htmlFor="my-drawer-3"
                     aria-label="close sidebar"
                     className="drawer-overlay">
                 </label>
                 <div className='min-h-screen bg-base-100 px-6'>
-                    <ul className="min-h-full w-60 flex flex-col gap-1 lg:mt-5 mt-16 text-neutral">
+                    <ul className="min-h-full w-60 flex flex-col mt-5 gap-1 text-neutral">
                         <li className='mt-1 text-lg font-medium'><NavLink to={'/'}>Home</NavLink></li>
                         <li className='mt-1 text-lg font-medium'><NavLink to={'/ry'}>Membership</NavLink></li>
                     </ul>

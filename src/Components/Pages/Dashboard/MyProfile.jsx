@@ -15,7 +15,7 @@ const MyProfile = () => {
     }
 
     return (
-        <div className='mb-8'>
+        <div className='mb-10'>
             <div>
                 <div className='lg:min-h-40 md:min-h-32 min-h-24 bg-accent'>
 

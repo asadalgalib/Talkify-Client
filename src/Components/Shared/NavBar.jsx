@@ -24,7 +24,7 @@ const NavBar = () => {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
     }
     return (
-        <div className="xl:px-28 lg:px-20 px-4 navbar sticky top-0 z-50 bg-base-100 w-full">
+        <div className="xl:px-28 lg:px-20 px-4 navbar sticky top-0 z-40 bg-base-100 w-full">
             <div className="flex-none md:hidden">
                 <label htmlFor="my-drawer-3" aria-label="open sidebar" className="">
                     <svg

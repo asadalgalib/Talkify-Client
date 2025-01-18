@@ -83,7 +83,7 @@ const AddPost = () => {
     }
     return (
         <div className='grid grid-cols-1 items-center min-h-screen'>
-            <div className='lg:px-14 md:px-8 px-4 lg:mx-14 md:mx-8 mx-4 lg:py-16 md:py-10 py-8 minh-[50vh] bg-base-100 rounded-md'>
+            <div className='lg:px-14 md:px-8 px-4 lg:mx-14 md:mx-8 mx-4 lg:py-16 md:py-10 py-8 bg-base-100 rounded-md'>
                 <div>
                     <h1 className='lg:text-3xl text-2xl font-semibold text-center text-neutral'>Create Post</h1>
                 </div>

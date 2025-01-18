@@ -5,7 +5,7 @@ import Marquee from "react-fast-marquee";
 const Tags = () => {
     const [allTags] = useTags();
     return (
-        <div className='lg:py-10 py-5 lg:px-10 px-5 bg-base-100 rounded-md shadow sticky center'>
+        <div className='lg:py-10 py-5 lg:px-10 px-5 bg-base-100 rounded-md shadow center'>
             <h1 className='text-center lg:text-3xl text-2xl font-semibold text-neutral'>Available Tags</h1>
             <div className='mt-5'>
                 <Marquee className='mx-2 bg-secondary'>

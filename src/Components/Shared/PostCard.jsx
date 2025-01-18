@@ -66,12 +66,12 @@ const PostCard = ({ post, refetch }) => {
                         <h1 className='mt-1'>{post?.description}</h1>
                 }
             </div>
-            <div className='px-5 my-2'>
+            <div className='px-5 mt-1'>
                 {
                     post?.tag && <h1>#{post?.tag}</h1>
                 }
             </div>
-            <div className='px-10 py-2'>
+            <div className='px-10 py-1'>
                 {
                     post?.postImage &&
                     <figure className=' w-full'>
@@ -81,7 +81,7 @@ const PostCard = ({ post, refetch }) => {
                     </figure>
                 }
             </div>
-            <div className='mt-2 px-5 flex items-center justify-between'>
+            <div className='mt-1 px-5 flex items-center justify-between'>
                 <div className='flex gap-2'>
                     <span
                         className='text-xs font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
