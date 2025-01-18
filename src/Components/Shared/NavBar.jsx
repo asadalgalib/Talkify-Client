@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { MdNotificationsActive } from 'react-icons/md';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './NavBar.css'
 import useAuth from '../../Custom/Hooks/useAuth';
 import useIsAdmin from '../../Custom/Hooks/useIsAdmin';
@@ -8,12 +8,10 @@ import useIsAdmin from '../../Custom/Hooks/useIsAdmin';
 const NavBar = () => {
     const { user, logOutUser } = useAuth()
     const [isAdmin, adminRefetch, isPending] = useIsAdmin();
-    console.log(isAdmin);
-    const navigate = useNavigate()
 
-    useEffect(()=>{
-        console.log('console');
-    },[user])
+    useEffect(() => {
+
+    }, [user])
 
     const handleTheme = () => {
         const htmlElement = document.documentElement;

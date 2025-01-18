@@ -4,7 +4,6 @@ import useAxiosSecure from './useAxiosSecure';
 
 const useIsAdmin = () => {
     const { user,loading } = useAuth();
-    console.log(loading);
 
     const axiosSecure = useAxiosSecure();
     const { data: isAdmin, isPending, error, refetch : adminRefetch } = useQuery({

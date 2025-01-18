@@ -4,6 +4,7 @@ import useAxiosPublic from '../../../Custom/Hooks/useAxiosPublic'
 import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure'
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import useTags from '../../../Custom/Hooks/useTags';
 
 const image_hosting_key = import.meta.env.VITE_image_hosting_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -11,13 +12,12 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const AddPost = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { user } = useAuth();
+    const [allTags] = useTags();
+    console.log(allTags);
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure()
     let postImage;
-    // const upVoteEmail = []
-    // const downVoteEmail = []
-    // const comment = []
 
     let now = new Date()
     const currentDate = now.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -65,7 +65,7 @@ const AddPost = () => {
                         timer: 1500
                     });
                     reset();
-                    navigate('/user/dashboard/myposts');
+                    navigate('/dashboard/user/myposts');
                 }
             })
             .catch(err => {
@@ -99,11 +99,9 @@ const AddPost = () => {
                                             required: "Please select a tag.",
                                         })}>
                                         <option disabled value='default'>select a tag</option>
-                                        <option value="React.js">React.js</option>
-                                        <option value="Angular.js">Angular.js</option>
-                                        <option value="Vue.js">Vue.js</option>
-                                        <option value="Laravel">Laravel</option>
-                                        <option value="Next.js">Next.js</option>
+                                        {
+                                            allTags?.map(tag => <option key={tag._id} value={tag.tag}>{tag.tag}</option>)
+                                        }
                                     </select>
                                 </label>
                             </div>

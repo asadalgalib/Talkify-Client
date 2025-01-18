@@ -11,7 +11,7 @@ const ManageUsers = () => {
     const { user } = useAuth();
     const { email } = user;
 
-    const handleRole = id => {
+    const handleAdmin = id => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -42,6 +42,37 @@ const ManageUsers = () => {
         })
     }
 
+    const handleUser = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Remove Admin!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.put(`/remove/admin?id=${id}`, { email })
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Remove Admin Successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        toast.error(err.code);
+                    })
+            }
+        })
+    }
+
     return (
         <div className='lg:my-14 md:my-8 my-4 min-h-screen lg:mx-14 md:mx-8 mx-4'>
             <div className='mb-5 bg-base-100 lg:py-10 py-5 lg:px-12 px-5 shadow rounded-md flex items-center justify-center'>
@@ -57,6 +88,7 @@ const ManageUsers = () => {
                             <th className=' text-base'>Name</th>
                             <th className=' text-base'>Email</th>
                             <th className=' text-base'>Role</th>
+                            <th className=' text-base'>Promote/Demote</th>
                             <th className=' text-base'>Membership</th>
                         </tr>
                     </thead>
@@ -79,9 +111,17 @@ const ManageUsers = () => {
                                     <td className='text-neutral'>
                                         {
                                             user?.role === "Admin" ?
-                                                <h1 className="font-semibold text-lg text-green-600">Admin</h1>
+                                                <h1 className="font-semibold text-lg text-green-600">ADMIN</h1>
                                                 :
-                                                <button onClick={() => handleRole(user._id)} className='font-semibold lg:text-3xl text-2xl text-white bg-secondary px-3 py-2 rounded-md'><FaUserShield /></button>
+                                                <h1 className="font-semibold text-lg text-blue-600">USER</h1>
+                                        }
+                                    </td>
+                                    <td className='text-neutral'>
+                                        {
+                                            user?.role === "Admin" ?
+                                                <button onClick={() => handleUser(user._id)} className='font-semibold lg:text-3xl text-2xl text-white bg-red-600 px-3 py-2 rounded-md'><FaUserShield /></button>
+                                                :
+                                                <button onClick={() => handleAdmin(user._id)} className='font-semibold lg:text-3xl text-2xl text-white bg-green-600 px-3 py-2 rounded-md'><FaUserShield /></button>
                                         }
                                     </td>
                                     <td className='text-neutral'>

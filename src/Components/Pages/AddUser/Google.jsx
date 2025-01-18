@@ -4,10 +4,14 @@ import useAuth from '../../../Custom/Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup } from 'firebase/auth';
 import useAxiosPublic from '../../../Custom/Hooks/useAxiosPublic';
+import useIsAdmin from '../../../Custom/Hooks/useIsAdmin';
+import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
 
 const Google = () => {
     const { user, setUser, auth, provider } = useAuth()
     const navigate = useNavigate()
+    const [isAdmin, adminRefetch, isPending] = useIsAdmin();
+    const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
 
     const handleGoogle = () => {
@@ -33,7 +37,11 @@ const Google = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        navigate('/');
+                        setTimeout(async () => {
+                            const res = await axiosSecure.get(`/check/admin?email=${email}`);
+                            adminRefetch();
+                            navigate('/')
+                        }, 1000)
                     })
                     .catch(err => {
                         console.log(err.code);
