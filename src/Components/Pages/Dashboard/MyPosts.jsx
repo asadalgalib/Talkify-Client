@@ -1,9 +1,6 @@
 import React from 'react';
 import useUserAllPosts from '../../../Custom/Hooks/useUserAllPosts';
-import PostCard from '../../Shared/PostCard';
 import { BiDislike, BiLike } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
-import { RiDeleteBinFill } from 'react-icons/ri';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaRegComment } from 'react-icons/fa';
 import Swal from 'sweetalert2';

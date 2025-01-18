@@ -5,6 +5,8 @@ import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure'
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import useTags from '../../../Custom/Hooks/useTags';
+import useUserAllPosts from '../../../Custom/Hooks/useUserAllPosts';
+import GetMember from './GetMember'
 
 const image_hosting_key = import.meta.env.VITE_image_hosting_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -13,7 +15,7 @@ const AddPost = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { user } = useAuth();
     const [allTags] = useTags();
-    console.log(allTags);
+    const [userAllPost, isPostLoading, error, refetch] = useUserAllPosts();
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure()
@@ -73,6 +75,12 @@ const AddPost = () => {
             })
     }
 
+    if (isPostLoading) {
+        return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
+    }
+    if (userAllPost.length >= 5) {
+        return <GetMember></GetMember>
+    }
     return (
         <div className='grid grid-cols-1 items-center min-h-screen'>
             <div className='lg:px-14 md:px-8 px-4 lg:mx-14 md:mx-8 mx-4 lg:py-16 md:py-10 py-8 minh-[50vh] bg-base-100 rounded-md'>
