@@ -7,10 +7,13 @@ import { useForm } from "react-hook-form"
 import useAuth from '../../../Custom/Hooks/useAuth';
 import Swal from 'sweetalert2';
 import useIsAdmin from '../../../Custom/Hooks/useIsAdmin';
+import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
 
 const Login = () => {
     const { user, logInUser } = useAuth();
-    const navigate = useNavigate()
+    const [isAdmin, adminRefetch, isPending] = useIsAdmin();
+    const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (userData) => {
@@ -33,7 +36,12 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/');
+                setTimeout(async () => {
+                    const res = await axiosSecure.get(`/check/admin?email=${userData.email}`);
+                    adminRefetch();
+                    navigate('/')
+                }, 1000)
+
             })
             .catch(err => {
                 console.log(err.code);

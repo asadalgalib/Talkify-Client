@@ -76,7 +76,7 @@ const AdminProfile = () => {
                 </div>
             </div>
             <div className='bg-base-100 mt-5 rounded-md shadow'>
-                <div className='flex items-center justify-center gap-3 pt-5 px-5'>
+                <div className='flex flex-wrap items-center justify-center gap-3 pt-5 px-5'>
                     <p className='flex items-center justify-center gap-1 text-neutral font-medium'><span className='text-sky-500'><FaDiamond /></span>Posts</p>
                     <p className='flex items-center justify-center gap-1 text-neutral font-medium'> <span className='text-purple-500'><FaDiamond /></span>Users</p>
                     <p className='flex items-center justify-center gap-1 text-neutral font-medium'><span className='text-pink-500'><FaDiamond /></span>Reports</p>

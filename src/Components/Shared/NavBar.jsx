@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MdNotificationsActive } from 'react-icons/md';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './NavBar.css'
 import useAuth from '../../Custom/Hooks/useAuth';
 import useIsAdmin from '../../Custom/Hooks/useIsAdmin';
 
 const NavBar = () => {
     const { user, logOutUser } = useAuth()
-    const [isAdmin] = useIsAdmin();
+    const [isAdmin, adminRefetch, isPending] = useIsAdmin();
     console.log(isAdmin);
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        console.log('console');
+    },[user])
 
     const handleTheme = () => {
         const htmlElement = document.documentElement;
@@ -17,6 +22,9 @@ const NavBar = () => {
         );
     };
 
+    if (isPending) {
+        return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
+    }
     return (
         <div className="xl:px-28 lg:px-20 px-4 navbar sticky top-0 z-50 bg-base-100 w-full">
             <div className="flex-none md:hidden">
