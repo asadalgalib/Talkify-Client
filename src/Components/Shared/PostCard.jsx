@@ -44,7 +44,7 @@ const PostCard = ({ post, refetch }) => {
                         <div><h1 className='font-semibold'>{post?.authorName}</h1></div>
                         <div className='flex items-center gap-2 mt-1'>
                             <p className='text-sm'>{post?.currentDate}</p>
-                            <p className='text-sm'>{post?.currentTime}</p>
+                            <p className='text-sm'>{post?.hours} : {post?.minutes} {post?.ampm}</p>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ const PostCard = ({ post, refetch }) => {
                     post?.tag && <h1>#{post?.tag}</h1>
                 }
             </div>
-            <div className='px-10 py-1'>
+            <div className='px-10 my-1'>
                 {
                     post?.postImage &&
                     <figure className=' w-full'>

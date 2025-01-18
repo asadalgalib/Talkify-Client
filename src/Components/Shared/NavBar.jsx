@@ -4,9 +4,11 @@ import { Link, NavLink } from 'react-router-dom';
 import './NavBar.css'
 import useAuth from '../../Custom/Hooks/useAuth';
 import useIsAdmin from '../../Custom/Hooks/useIsAdmin';
+import useAnnounce from '../../Custom/Hooks/useAnnounce';
 
 const NavBar = () => {
     const { user, logOutUser } = useAuth()
+    const [announceData] = useAnnounce();
     const [isAdmin, adminRefetch, isPending] = useIsAdmin();
 
     useEffect(() => {
@@ -83,8 +85,11 @@ const NavBar = () => {
                         </svg>
                     </button>
                 </div>
-                <div className='text-3xl p-2 rounded cursor-pointer'>
+                <div className='text-3xl p-2 rounded cursor-pointer bg-base-100 border-none shadow-none btn'>
                     <p><MdNotificationsActive /></p>
+                    {
+                        announceData && <a href='#Announcement' className="badge badge-error -ml-6 -mt-4 text-white">{announceData.length}</a>
+                    }
                 </div>
                 <div>
                     {

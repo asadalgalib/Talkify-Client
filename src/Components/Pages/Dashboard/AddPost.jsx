@@ -25,11 +25,12 @@ const AddPost = () => {
     const currentDate = now.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
     let hours = now.getHours();
     let minutes = now.getMinutes();
+  
     let ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    if (hours === 0) hours = 12;
+    // hours = hours % 12;
+    // if (hours === 0) hours = 12;
     if (minutes < 10) minutes = '0' + minutes;
-    const currentTime = hours + ':' + minutes + ' ' + ampm;
+    const currentTime = hours + ':' + minutes + ampm ;
 
     const onSubmit = async (data) => {
 
@@ -51,7 +52,7 @@ const AddPost = () => {
         const postData =
         {
             authorName, authorImage, authorEmail, title, tag, postImage, description,
-            upVote, downVote, currentDate, currentTime
+            upVote, downVote, currentDate, hours,minutes, ampm
         };
         console.log(postData);
         // post data 

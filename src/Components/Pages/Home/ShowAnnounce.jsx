@@ -6,11 +6,14 @@ import { Pagination } from 'swiper/modules';
 
 const ShowAnnounce = () => {
     const [announceData] = useAnnounce();
-    console.log(announceData);
+
+    if(!announceData){
+        return
+    }
     return (
-        <div className='py-5 px-5 bg-secondary rounded-md shadow center mt-5'>
+        <div id='Announcement' className='py-5 px-5 bg-secondary rounded-md shadow center mt-5'>
             <div>
-                <h1 className='text-center lg:text-3xl text-2xl font-semibold text-neutral'>Announcement</h1>
+                <h1 className='text-center lg:text-3xl text-2xl font-semibold text-white'>Announcement</h1>
             </div>
             <div className='flex items-center justify-center mt-5 bg-base-100 rounded-md'>
                 <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
