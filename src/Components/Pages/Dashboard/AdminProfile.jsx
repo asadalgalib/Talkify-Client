@@ -13,6 +13,8 @@ import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import useUserCount from '../../../Custom/Hooks/useUserCount';
+import useAllPostCount from '../../../Custom/Hooks/useAllPostCount';
 
 const AdminProfile = () => {
     const { user } = useAuth();
@@ -20,6 +22,8 @@ const AdminProfile = () => {
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
     const [userData] = useUserData();
+    const [userCount,isCountLoading] = useUserCount();
+    const [AllPostCount,isPostCountLoading] = useAllPostCount();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const data = [{ name: "User", value: userData?.length }, { name: 'Posts', value: allPost?.length },
@@ -67,7 +71,7 @@ const AdminProfile = () => {
                             <MdEventNote />
                         </div>
                         <div className='font-semibold flex items-center gap-2'>
-                            <h1 className='text-3xl'>{allPost?.length}</h1>
+                            <h1 className='text-3xl'>{AllPostCount?.count}</h1>
                             <p className='mt-1 text-2xl'>Posts</p>
                         </div>
                     </div>
@@ -78,7 +82,7 @@ const AdminProfile = () => {
                             <PiUsersFourFill />
                         </div>
                         <div className='font-semibold flex items-center gap-2'>
-                            <h1 className='text-3xl'>{userData?.length}</h1>
+                            <h1 className='text-3xl'>{userCount?.count}</h1>
                             <p className='mt-1 text-2xl'>Users</p>
                         </div>
                     </div>

@@ -7,7 +7,6 @@ import useAllPost from '../Custom/Hooks/useAllPost';
 
 const HomeLayout = () => {
     const [allPost, isAllPostLoading, refetch, setPostQuery] = useAllPost();
-    console.log(allPost);
 
     const handleOnChange = e => {
         e.preventDefault();
@@ -17,7 +16,6 @@ const HomeLayout = () => {
     };
 
     const handleSort = () =>{
-        console.log('sort');
         setPostQuery('sort');
         refetch();
     }
@@ -31,7 +29,13 @@ const HomeLayout = () => {
                     <ShowAnnounce></ShowAnnounce>
                 </div>
                 <div className='overflow-y-auto flex-grow'>
-                    <AllPosts allPost={allPost} isAllPostLoading={isAllPostLoading} refetch={refetch} handleSort={handleSort}></AllPosts>
+                    <AllPosts 
+                    allPost={allPost} 
+                    isAllPostLoading={isAllPostLoading} 
+                    refetch={refetch} 
+                    handleSort={handleSort}
+                    >
+                    </AllPosts>
                 </div>
             </div>
         </div>

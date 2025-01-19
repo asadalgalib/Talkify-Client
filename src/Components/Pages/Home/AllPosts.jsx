@@ -1,17 +1,15 @@
-import React, { useEffect } from 'react';;
+import React from 'react';;
 import ShowPost from '../../Shared/ShowPost';
-import useAllPost from '../../../Custom/Hooks/useAllPost';
 
-const AllPosts = ({allPost,isAllPostLoading,refetch,handleSort}) => {
-    // const [ allPost, isAllPostLoading, refetch,setPostQuery,postQuery] = useAllPost();
-    // console.log(allPost);
+
+const AllPosts = ({ allPost,refetch, isAllPostLoading, handleSort}) => {
 
     if (isAllPostLoading) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
     }
     return (
         <div className=''>
-            <div className='max-w-2xl mx-auto flex items-center justify-between bg-base-100 mb-5 lg:py-10 py-5 lg:px-12 px-5 shadow rounded-md'>
+            <div className='w-full mx-auto flex items-center justify-between bg-base-100 mb-5 lg:py-10 py-5 lg:px-12 px-5 shadow rounded-md'>
                 <div>
                     <h1 className='lg:text-3xl text-2xl font-semibold text-neutral'>All Posts</h1>
                 </div>

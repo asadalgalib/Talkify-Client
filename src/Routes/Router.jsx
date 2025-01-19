@@ -15,6 +15,7 @@ import ManageUsers from "../Components/Pages/Dashboard/ManageUsers";
 import Activities from "../Components/Pages/Dashboard/Activities";
 import Announce from "../Components/Pages/Dashboard/Announce";
 import AdminPrivate from "./AdminPrivate";
+import PostDetails from "../Components/Pages/Home/PostDetails";
 
 const Router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const Router = createBrowserRouter([
             {
                 path: '/',
                 element: <HomeLayout></HomeLayout>
+            },
+            {
+                path: '/details/:id',
+                element: <PostDetails></PostDetails>
             },
             {
                 path: '/joinus',

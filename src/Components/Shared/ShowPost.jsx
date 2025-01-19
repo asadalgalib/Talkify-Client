@@ -1,31 +1,15 @@
-import React, { useEffect } from 'react';
-import { BiDislike, BiLike } from 'react-icons/bi';
-import { FaRegComment } from 'react-icons/fa';
-import { FaRegShareFromSquare } from 'react-icons/fa6';
-import useAxiosSecure from '../../Custom/Hooks/useAxiosSecure';
-import { toast } from 'react-toastify';
-import useAuth from '../../Custom/Hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const ShowPost = ({ post, refetch }) => {
-    const { user } = useAuth();
-    const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate()
 
-    const handleUpvote = (id) => {
-        const { email } = user;
-        axiosSecure.put(`/update/post?id=${id}`, { email })
-            .then(res => {
-                if (res.data.modifiedCount > 0) {
-                    refetch();
-                }
-            })
-            .catch(err => {
-                toast.error(err.code);
-            });
-    };
+    const handleDetails = (id) => {
+        navigate(`/details/${id}`);
+    }
 
 
     return (
-        <div className="rounded-md bg-base-100 max-w-2xl py-4 shadow">
+        <div onClick={() => handleDetails(post?._id)} className="rounded-md bg-base-100 w-full py-4 shadow cursor-pointer">
             <div className='px-2'>
                 <div className='flex items-end gap-3'>
                     <div className="avatar">
@@ -44,7 +28,6 @@ const ShowPost = ({ post, refetch }) => {
             </div>
             <div className='px-5 mt-3'>
                 <h2 className='font-medium'>{post?.title}</h2>
-                <h1 className='mt-1'>{post?.description}</h1>
             </div>
             <div className='px-5 mt-1'>
                 {post?.tag && <h1>#{post?.tag}</h1>}
@@ -58,11 +41,11 @@ const ShowPost = ({ post, refetch }) => {
             </div>
             <div className='mt-1 px-5 flex items-center justify-between'>
                 <div className='flex gap-2'>
-                    <span className='text-xs font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
-                        {post?.upVote} Up vote
+                    <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
+                        {post?.upVote} Like
                     </span>
-                    <span className='text-xs font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
-                        {post?.downVote} Down vote
+                    <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
+                        {post?.downVote} Dislike
                     </span>
                 </div>
                 <div className='flex gap-2'>
@@ -77,23 +60,6 @@ const ShowPost = ({ post, refetch }) => {
                         </span>
                     )}
                 </div>
-            </div>
-            <div className="divider my-1 px-2"></div>
-            <div className='px-5 pb-1 flex items-center justify-between'>
-                <div className='flex gap-5'>
-                    <button onClick={() => handleUpvote(post?._id)} className='flex items-center text-2xl'>
-                        <BiLike />
-                    </button>
-                </div>
-                <button className='flex items-center text-2xl'>
-                    <BiDislike />
-                </button>
-                <button className='flex items-center text-2xl'>
-                    <FaRegComment />
-                </button>
-                <button className='flex items-center text-2xl'>
-                    <FaRegShareFromSquare />
-                </button>
             </div>
         </div>
     );
