@@ -9,9 +9,10 @@ import useAuth from '../../../Custom/Hooks/useAuth';
 import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const PostDetails = () => {
-    const [hide,setHide] = useState(true)
+    const [hide, setHide] = useState(true)
     console.log(hide);
     const { id } = useParams();
     const { user } = useAuth();
@@ -82,9 +83,51 @@ const PostDetails = () => {
 
     // ------------------------------------------------------------------------------------
 
+    const { data: comment, refetch : commentRefech} = useQuery({
+        queryKey: ['comment',post?._id],
+        queryFn : async ()=>{
+            const res = await axiosPublic(`/comment/${post?._id}`);
+            return res.data;
+        }
+    });
+    console.log(comment);
+
+    // -------------------------------------------------------------------------------------
+
     const onSubmit = (data) => {
-        console.log(data.comment);
+        if (!user) {
+            return toast.error('Please Login first');
+        }
+        const { email, displayName: name, photoURL: photo } = user;
+        const comment = data.comment;
+        const postId = post?._id
+        console.log({ email, name, photo, comment, postId });
+
+        axiosSecure.post('/comment', { email, name, photo, comment, postId })
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Comment Added Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    commentRefech();
+                    reset();
+                }
+            })
+            .catch(err => {
+                toast.error(err.code);
+            })
     }
+
+    // -------------------------------------------------------------------------
+
+   
+
+    // -------------------------------------------------------------------------
 
     if (isLoading) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
@@ -125,10 +168,10 @@ const PostDetails = () => {
                 <div className='mt-1 px-5 flex items-center justify-between'>
                     <div className='flex gap-2'>
                         <span className='text-xs font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
-                            {post?.upVote} Up vote
+                            {post?.upVote} Like
                         </span>
                         <span className='text-xs font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
-                            {post?.downVote} Down vote
+                            {post?.downVote} Dislike
                         </span>
                     </div>
                     <div className='flex gap-2'>
@@ -147,7 +190,7 @@ const PostDetails = () => {
                 <div className="divider my-[2px] px-2"></div>
                 <div className='px-5 pb-1 flex items-center justify-between gap-2'>
                     <div onClick={() => handleUpvote(post?._id)} className='w-full flex items-center justify-center py-2 rounded hover:bg-slate-200'>
-                        <button  className='flex items-center lg:text-3xl text-2xl'>
+                        <button className='flex items-center lg:text-3xl text-2xl'>
                             <BiLike />
                         </button>
                     </div>
@@ -156,7 +199,7 @@ const PostDetails = () => {
                             <BiDislike />
                         </button>
                     </div>
-                    <div onClick={()=>setHide(!hide)} className='w-full flex items-center justify-center py-2 rounded hover:bg-slate-200'>
+                    <div className='w-full flex items-center justify-center py-2 rounded hover:bg-slate-200'>
                         <button className='flex items-center lg:text-3xl text-2xl'>
                             <FaRegComment />
                         </button>
@@ -167,15 +210,16 @@ const PostDetails = () => {
                         </button>
                     </div>
                 </div>
-                <div className={`mt-5 ${hide ? 'hidden' : ""}`}>
-                    <div>
+                <div className={`mt-2}`}>
+                    <div className="divider my-[2px] px-2"></div>
+                    <div className='mt-2'>
                         <h1 className='lg:text-2xl text-xl  font-semibold text-neutral text-center'>Make a Comment</h1>
                     </div>
                     <form className='max-w-xl mx-auto mt-5' onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control">
                             <label className="input input-bordered  flex items-center gap-2">
                                 <input type="text" {...register('comment', {
-                                    required: 'Comment is required', minLength: { value: 3 }
+                                    required: 'Comment is required', minLength: { value: 2 }
                                 })}
                                     className="grow bg-base-100" placeholder="comment" />
                             </label>
