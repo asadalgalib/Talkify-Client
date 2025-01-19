@@ -4,9 +4,14 @@ import Swal from "sweetalert2";
 import useAuth from "../../../Custom/Hooks/useAuth";
 import useAxiosSecure from "../../../Custom/Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import useUserCount from "../../../Custom/Hooks/useUserCount";
+import { keys } from "localforage";
 
 const ManageUsers = () => {
-    const [userData, refetch] = useUserData();
+    const [userData, refetch, isLoading,currentPage, setCurrentPage, pageSize] = useUserData();
+    const [userCount,isCountLoading] = useUserCount()
+    console.log(userCount);
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth();
     const { email } = user;
@@ -72,7 +77,22 @@ const ManageUsers = () => {
             }
         })
     }
+    
 
+    const totalPages = Math.ceil(userCount?.count / pageSize)
+    const pageNumbers = [];
+    for (let i = 0; i < totalPages; i++) {
+        pageNumbers.push(i);
+    }
+    
+    const handleBtn = page =>{
+        setCurrentPage(page);
+        refetch();
+    }
+    
+    if (isLoading) {
+        return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
+    }
     return (
         <div className='lg:my-14 md:my-8 my-4 min-h-screen lg:mx-14 md:mx-8 mx-4 mb-10'>
             <div className='mb-5 bg-base-100 lg:py-10 py-5 lg:px-12 px-5 shadow rounded-md flex items-center justify-center'>
@@ -136,6 +156,13 @@ const ManageUsers = () => {
                         }
                     </tbody>
                 </table>
+            </div>
+            <div className="join flex items-end justify-center mt-5 bg-base-100 py-2 px-5 shadow">
+                <div>
+                    {
+                        pageNumbers.map((page, index) => <button onClick={()=>handleBtn(page)} key={index} className={`join-item btn  border-white text-neutral hover:bg-secondary ${currentPage == page ? "bg-secondary text-white" : ""}`}>{page +1}</button>)
+                    }
+                </div>
             </div>
         </div>
     );

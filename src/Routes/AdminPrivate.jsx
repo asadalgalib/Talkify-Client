@@ -6,7 +6,7 @@ const AdminPrivate = ({ children }) => {
     const location = useLocation();
     const { loading, user } = useAuth();
     const [isAdmin, adminRefetch, isPending] = useIsAdmin()
-    console.log(isAdmin);
+    // console.log(isAdmin);
 
     if (loading && isPending) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>

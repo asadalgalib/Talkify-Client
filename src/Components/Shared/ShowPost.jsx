@@ -9,8 +9,6 @@ import useAuth from '../../Custom/Hooks/useAuth';
 const ShowPost = ({ post, refetch }) => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    let postHours;
-    console.log(post,post.hours, post.minutes);
 
     const handleUpvote = (id) => {
         const { email } = user;
@@ -25,17 +23,9 @@ const ShowPost = ({ post, refetch }) => {
             });
     };
 
-    useEffect(() => {
-        if (post?.hours) {
-            postHours = post.hours % 12;
-            if (post.hours === 0) {
-                postHours = 12;
-            }
-        }
-    }, [post])
 
     return (
-        <div className="rounded-md bg-base-100 max-w-2xl py-2 shadow">
+        <div className="rounded-md bg-base-100 max-w-2xl py-4 shadow">
             <div className='px-2'>
                 <div className='flex items-end gap-3'>
                     <div className="avatar">

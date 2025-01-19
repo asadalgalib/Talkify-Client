@@ -45,7 +45,6 @@ const AuthProvider = ({ children }) => {
                 const userInfo = { email: currentUser?.email };
                 axiosSecure.post('/jwt/login', userInfo)
                     .then(res => {
-                        console.log(res.data);
                         setLoading(false);
                     })
                     .catch(err => {
@@ -55,7 +54,6 @@ const AuthProvider = ({ children }) => {
             else {
                 axiosSecure.post('jwt/logout', {})
                     .then(res => {
-                        console.log(res.data);
                         setLoading(false)
                     })
                     .catch(err => {
