@@ -11,6 +11,7 @@ import DataNotFound from '../../Shared/DataNotFound';
 const MyPosts = () => {
     const [userAllPost, isPostLoading, error, refetch] = useUserAllPosts();
     const axiosSecure = useAxiosSecure();
+    console.log(userAllPost);
 
     const handleDelete = id => {
         Swal.fire({

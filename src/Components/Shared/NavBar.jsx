@@ -22,9 +22,6 @@ const NavBar = () => {
         );
     };
 
-    if (isPending) {
-        return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
-    }
     return (
         <div className="xl:px-28 lg:px-20 px-4 navbar sticky top-0 z-40 bg-base-100 w-full">
             <div className="flex-none md:hidden">
@@ -88,7 +85,7 @@ const NavBar = () => {
                 <div className='text-3xl p-2 rounded cursor-pointer bg-base-100 border-none shadow-none btn'>
                     <p><MdNotificationsActive /></p>
                     {
-                        announceData && <a href='#Announcement' className="badge badge-error -ml-6 -mt-4 text-white">{announceData.length}</a>
+                        announceData && <div className="badge badge-error -ml-6 -mt-4 text-white">{announceData.length}</div>
                     }
                 </div>
                 <div>

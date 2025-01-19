@@ -3,7 +3,7 @@ import useAuth from '../../../Custom/Hooks/useAuth';
 import bronze from '../../../assets/bronze.png'
 import gold from '../../../assets/gold.png'
 import useRecentPost from '../../../Custom/Hooks/useRecentPost';
-import PostCard from '../../Shared/PostCard';
+import ShowPost from '../../Shared/ShowPost';
 
 const MyProfile = () => {
     const { user } = useAuth()
@@ -36,7 +36,7 @@ const MyProfile = () => {
                     </div>
                     <div className='flex flex-col gap-5  mx-auto'>
                         {
-                            recentPost.map(post => <PostCard key={post._id} post={post}></PostCard>)
+                            recentPost.map(post =><ShowPost key={post._id} post={post}></ShowPost> )
                         }
                     </div>
                 </div>

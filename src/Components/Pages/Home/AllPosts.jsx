@@ -1,6 +1,6 @@
 import React from 'react';
 import useAllPost from '../../../Custom/Hooks/useAllPost';
-import PostCard from '../../Shared/PostCard';
+import ShowPost from '../../Shared/ShowPost';
 
 const AllPosts = () => {
     const [allPost, isAllPostLoading, refetch] = useAllPost();
@@ -21,7 +21,7 @@ const AllPosts = () => {
             </div>
             <div className='flex flex-col justify-center items-center gap-5'>
                 {
-                    allPost?.map(post => <PostCard key={post._id} refetch={refetch} post={post}></PostCard>)
+                    allPost?.map(post => <ShowPost key={post._id} refetch={refetch} post={post}></ShowPost>)
                 }
             </div>
         </div>

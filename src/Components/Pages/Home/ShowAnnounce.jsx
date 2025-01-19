@@ -7,7 +7,7 @@ import { Pagination } from 'swiper/modules';
 const ShowAnnounce = () => {
     const [announceData] = useAnnounce();
 
-    if(!announceData){
+    if (!announceData) {
         return
     }
     return (
@@ -18,26 +18,25 @@ const ShowAnnounce = () => {
             <div className='flex items-center justify-center mt-5 bg-base-100 rounded-md'>
                 <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
                     {
-                        announceData?.map(data =>
-                            <SwiperSlide className='lg:py-10 py-5 px-5 min-h-60 flex flex-col items-center justify-center'>
-                                <div className=''>
-                                    <div className='flex items-start gap-3'>
-                                        <div className="avatar">
-                                            <div className="rounded-full w-12">
-                                                <img src={data?.photo} />
-                                            </div>
-                                        </div>
-                                        <div className=''>
-                                            <div><h1 className='font-semibold text-neutral mb-1'>{data?.name}</h1></div>
-                                            <div className='text-blue-600 bg-sky-200 py-[2px] text-center text-xs font-semibold rounded-lg'>Admin</div>
+                        announceData?.map(data => <SwiperSlide key={announceData._id} className='lg:py-10 py-5 px-5 min-h-60 flex flex-col items-center justify-center'>
+                            <div className=''>
+                                <div className='flex items-start gap-3'>
+                                    <div className="avatar">
+                                        <div className="rounded-full w-12">
+                                            <img src={data?.photo} />
                                         </div>
                                     </div>
+                                    <div className=''>
+                                        <div><h1 className='font-semibold text-neutral mb-1'>{data?.name}</h1></div>
+                                        <div className='text-blue-600 bg-sky-200 py-[2px] text-center text-xs font-semibold rounded-lg'>Admin</div>
+                                    </div>
                                 </div>
-                                <div className=''>
-                                    <p className='text-neutral font-semibold mt-2'>{data?.title}</p>
-                                    <p className='text-neutral mt-1'>{data?.description}</p>
-                                </div>
-                            </SwiperSlide>)
+                            </div>
+                            <div className=''>
+                                <p className='text-neutral font-semibold mt-2'>{data?.title}</p>
+                                <p className='text-neutral mt-1'>{data?.description}</p>
+                            </div>
+                        </SwiperSlide>)
                     }
                 </Swiper>
             </div>
