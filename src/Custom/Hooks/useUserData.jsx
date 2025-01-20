@@ -7,7 +7,6 @@ const useUserData = () => {
     const { user } = useAuth();
     const [currentPage, setCurrentPage] = useState(0);
     const [pageSize,setPageSize] = useState(10);
-    console.log(currentPage);
 
     const axiosSecure = useAxiosSecure();
     const { data: userData, isLoading, error, refetch } = useQuery({

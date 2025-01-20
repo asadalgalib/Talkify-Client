@@ -10,10 +10,10 @@ import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import Share from './Share';
+import { ImCross } from 'react-icons/im';
 
 const PostDetails = () => {
-    const [hide, setHide] = useState(true)
-    console.log(hide);
     const { id } = useParams();
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
@@ -40,7 +40,7 @@ const PostDetails = () => {
 
         if (post?.upVoteEmail) {
             if (post?.upVoteEmail.includes(email)) {
-                return toast.warning('You have already UP voted')
+                return toast.warning('You have already Liked')
             }
         }
 
@@ -48,7 +48,7 @@ const PostDetails = () => {
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     console.log(res.data);
-                    toast.success('Thanks for UP Vote')
+                    toast.success('Thanks for Like')
                     refetch();
                 }
             })
@@ -57,6 +57,8 @@ const PostDetails = () => {
             });
     };
 
+    // -------------------------------------------------------------------
+
     const handleDownvote = (id) => {
         if (!user) {
             return toast.error('Please Login first');
@@ -64,7 +66,7 @@ const PostDetails = () => {
         const { email } = user;
         if (post?.downVote) {
             if (post?.downVoteEmail.includes(email)) {
-                return toast.warning('You have already Down voted');
+                return toast.warning('You have already Disliked');
             }
         }
 
@@ -72,7 +74,7 @@ const PostDetails = () => {
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     console.log(res.data);
-                    toast.success('Down vote submited');
+                    toast.success('Dislike submited');
                     refetch();
                 }
             })
@@ -83,14 +85,13 @@ const PostDetails = () => {
 
     // ------------------------------------------------------------------------------------
 
-    const { data: comment, refetch : commentRefech} = useQuery({
-        queryKey: ['comment',post?._id],
-        queryFn : async ()=>{
+    const { data: comment, refetch: commentRefech } = useQuery({
+        queryKey: ['comment', post?._id],
+        queryFn: async () => {
             const res = await axiosPublic(`/comment/${post?._id}`);
             return res.data;
         }
     });
-    console.log(comment);
 
     // -------------------------------------------------------------------------------------
 
@@ -100,7 +101,7 @@ const PostDetails = () => {
         }
         const { email, displayName: name, photoURL: photo } = user;
         const comment = data.comment;
-        const postId = post?._id
+        const postId = post?._id;
         console.log({ email, name, photo, comment, postId });
 
         axiosSecure.post('/comment', { email, name, photo, comment, postId })
@@ -125,9 +126,40 @@ const PostDetails = () => {
 
     // -------------------------------------------------------------------------
 
-   
+    const openModal = () => {
+        document.getElementById('my_modal_1').showModal();
+    }
+
+    const closeModal = () => {
+        document.getElementById('my_modal_1').close();
+    }
 
     // -------------------------------------------------------------------------
+
+    const handleShare = () => {
+        const postId = post?._id;
+        axiosPublic.post('/share', { postId })
+            .then(res => {
+                console.log(res.data);
+                shareRefech();
+            })
+            .catch(err => {
+                toast.error(err.code);
+            })
+    }
+
+    // ----------------------------------------------------------------------------
+
+    const { data: share, refetch: shareRefech } = useQuery({
+        queryKey: ['share', post?._id],
+        queryFn: async () => {
+            const res = await axiosPublic(`/share/${post?._id}`);
+            console.log(res.data);
+            return res.data;
+        }
+    });
+
+    // ---------------------------------------------------------------------------
 
     if (isLoading) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
@@ -138,7 +170,7 @@ const PostDetails = () => {
                 <div className='px-2'>
                     <div className='flex items-end gap-3'>
                         <div className="avatar">
-                            <div className="mask mask-squircle w-14">
+                            <div className="mask rounded-full w-14 h-14">
                                 <img src={post?.authorImage} />
                             </div>
                         </div>
@@ -165,53 +197,78 @@ const PostDetails = () => {
                         </figure>
                     )}
                 </div>
-                <div className='mt-1 px-5 flex items-center justify-between'>
-                    <div className='flex gap-2'>
-                        <span className='text-xs font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
+                <div className='mt-1 px-5 flex items-center justify-start gap-4'>
+                    <div className=''>
+                        <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
                             {post?.upVote} Like
                         </span>
-                        <span className='text-xs font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
+                    </div>
+                    <div>
+                        <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
                             {post?.downVote} Dislike
                         </span>
                     </div>
-                    <div className='flex gap-2'>
-                        {post?.comment && (
-                            <span className='text-sm badge-secondary px-2 py-1 rounded-md text-white'>
-                                {post?.comment} Upvote
-                            </span>
-                        )}
-                        {post?.share && (
-                            <span className='text-sm badge-secondary px-2 py-1 rounded-md text-white'>
-                                {post?.share} Upvote
-                            </span>
-                        )}
+                    <div className=''>
+                        <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
+                            {comment?.length} Comments
+                        </span>
+                    </div>
+                    <div>
+                        <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
+                            {share?.length} Shares
+                        </span>
                     </div>
                 </div>
                 <div className="divider my-[2px] px-2"></div>
                 <div className='px-5 pb-1 flex items-center justify-between gap-2'>
-                    <div onClick={() => handleUpvote(post?._id)} className='w-full flex items-center justify-center py-2 rounded hover:bg-slate-200'>
+                    <div onClick={() => handleUpvote(post?._id)} className='w-full flex items-center justify-center py-2 rounded text-neutral hover:text-black hover:bg-slate-200'>
                         <button className='flex items-center lg:text-3xl text-2xl'>
                             <BiLike />
                         </button>
                     </div>
-                    <div onClick={() => handleDownvote(post?._id)} className='w-full flex items-center justify-center py-2 rounded hover:bg-slate-200'>
+                    <div onClick={() => handleDownvote(post?._id)} className='w-full flex items-center justify-center py-2 rounded hover:bg-slate-200 text-neutral hover:text-black'>
                         <button className='flex items-center lg:text-3xl text-2xl'>
                             <BiDislike />
                         </button>
                     </div>
-                    <div className='w-full flex items-center justify-center py-2 rounded hover:bg-slate-200'>
+                    <div className='w-full flex items-center justify-center py-2 rounded hover:bg-slate-200 text-neutral hover:text-black'>
                         <button className='flex items-center lg:text-3xl text-2xl'>
                             <FaRegComment />
                         </button>
                     </div>
-                    <div className='w-full flex items-center justify-center py-2 rounded hover:bg-slate-200'>
+                    <div onClick={openModal} className='w-full flex items-center justify-center py-2 rounded hover:bg-slate-200 text-neutral hover:text-black'>
                         <button className='flex items-center lg:text-3xl text-2xl'>
                             <FaRegShareFromSquare />
                         </button>
                     </div>
                 </div>
+                <div className="divider my-[2px] px-2"></div>
+                {
+                    comment?.length > 0 &&
+                    <div>
+                        {
+                            comment.map(c =>
+                                <div key={c._id} className='my-2'>
+                                    <div className='flex items-start gap-3'>
+                                        <div className="avatar">
+                                            <div className="mask rounded-full w-9">
+                                                <img src={c?.photo} />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h1 className='font-semibold text-sm'>{c?.name}</h1>
+                                            {
+                                                c?.email === post?.authorEmail && <div className='text-blue-600 bg-sky-200 py-[1px] text-center text-xs rounded-lg'>Author</div>
+                                            }
+                                            <p className='p-1 bg-base-200 mt-2 rounded px-4 text-sm font-medium'>{c?.comment}</p>
+                                        </div>
+                                    </div>
+                                    <div className="divider my-[2px] px-2"></div>
+                                </div>)
+                        }
+                    </div>
+                }
                 <div className={`mt-2}`}>
-                    <div className="divider my-[2px] px-2"></div>
                     <div className='mt-2'>
                         <h1 className='lg:text-2xl text-xl  font-semibold text-neutral text-center'>Make a Comment</h1>
                     </div>
@@ -228,11 +285,26 @@ const PostDetails = () => {
                             <button className="bg-secondary font-semibold w-full py-3 text-white text-lg rounded-md">Post</button>
                         </div>
                         <div className='my-1'>
-                            {errors.comment && <span className='flex text-red-500'>Tag is required</span>}
+                            {errors.comment && <span className='flex text-red-500'>Comment is required</span>}
                         </div>
                     </form>
                 </div>
             </div>
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+            <dialog id="my_modal_1" className="modal">
+                <div className="modal-box">
+                    <div className='flex justify-end items-center'>
+                        <button onClick={closeModal}><ImCross className='text-red-600' /></button>
+                    </div>
+                    <h1 className='tex-xl font-medium text-center mb-2'>Share to</h1>
+                    <div>
+                        <Share
+                            handleShare={handleShare}
+                            url={`https://talkify-forum.web.app/details/${post?._id}`}
+                            title={post?.title}></Share>
+                    </div>
+                </div>
+            </dialog>
         </div>
     );
 };

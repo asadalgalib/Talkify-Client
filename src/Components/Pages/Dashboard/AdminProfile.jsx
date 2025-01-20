@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import useUserCount from '../../../Custom/Hooks/useUserCount';
 import useAllPostCount from '../../../Custom/Hooks/useAllPostCount';
+import useCommentCount from '../../../Custom/Hooks/useCommentCount';
 
 const AdminProfile = () => {
     const { user } = useAuth();
@@ -23,6 +24,7 @@ const AdminProfile = () => {
     const axiosSecure = useAxiosSecure();
     const [userData] = useUserData();
     const [userCount,isCountLoading] = useUserCount();
+    const [commentCount] = useCommentCount();
     const [AllPostCount,isPostCountLoading] = useAllPostCount();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -93,7 +95,7 @@ const AdminProfile = () => {
                             <FaRegComment></FaRegComment>
                         </div>
                         <div className='font-semibold flex items-center gap-2'>
-                            <h1 className='text-3xl'>{allPost?.length}</h1>
+                            <h1 className='text-3xl'>{commentCount?.count}</h1>
                             <p className='mt-1 text-2xl'>Comments</p>
                         </div>
                     </div>

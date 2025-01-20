@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 const ShowPost = ({ post, refetch }) => {
@@ -7,13 +8,29 @@ const ShowPost = ({ post, refetch }) => {
         navigate(`/details/${id}`);
     }
 
+    const { data: share, refetch: shareRefech } = useQuery({
+        queryKey: ['share', post?._id],
+        queryFn: async () => {
+            const res = await axiosPublic(`/share/${post?._id}`);
+            console.log(res.data);
+            return res.data;
+        }
+    });
+
+    const { data: comment, refetch: commentRefech } = useQuery({
+        queryKey: ['comment', post?._id],
+        queryFn: async () => {
+            const res = await axiosPublic(`/comment/${post?._id}`);
+            return res.data;
+        }
+    });
 
     return (
         <div onClick={() => handleDetails(post?._id)} className="rounded-md bg-base-100 w-full py-4 shadow cursor-pointer">
             <div className='px-2'>
                 <div className='flex items-end gap-3'>
                     <div className="avatar">
-                        <div className="mask mask-squircle w-14">
+                        <div className="mask rounded-full w-14">
                             <img src={post?.authorImage} />
                         </div>
                     </div>
@@ -39,26 +56,26 @@ const ShowPost = ({ post, refetch }) => {
                     </figure>
                 )}
             </div>
-            <div className='mt-1 px-5 flex items-center justify-between'>
-                <div className='flex gap-2'>
+            <div className='mt-1 px-5 flex items-center justify-start gap-4'>
+                <div className=''>
                     <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
                         {post?.upVote} Like
                     </span>
+                </div>
+                <div>
                     <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
                         {post?.downVote} Dislike
                     </span>
                 </div>
-                <div className='flex gap-2'>
-                    {post?.comment && (
-                        <span className='text-sm badge-secondary px-2 py-1 rounded-md text-white'>
-                            {post?.comment} Upvote
-                        </span>
-                    )}
-                    {post?.share && (
-                        <span className='text-sm badge-secondary px-2 py-1 rounded-md text-white'>
-                            {post?.share} Upvote
-                        </span>
-                    )}
+                <div className=''>
+                    <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
+                        {comment ? comment?.length : 0} Comments
+                    </span>
+                </div>
+                <div>
+                    <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
+                        {share ? share?.length : 0} Shares
+                    </span>
                 </div>
             </div>
         </div>

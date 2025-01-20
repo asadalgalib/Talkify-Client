@@ -11,7 +11,6 @@ import { keys } from "localforage";
 const ManageUsers = () => {
     const [userData, refetch, isLoading,currentPage, setCurrentPage, pageSize] = useUserData();
     const [userCount,isCountLoading] = useUserCount()
-    console.log(userCount);
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth();
     const { email } = user;
