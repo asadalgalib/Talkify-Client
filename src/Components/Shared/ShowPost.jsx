@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import useAxiosPublic from '../../Custom/Hooks/useAxiosPublic';
 
 const ShowPost = ({ post, refetch }) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
     const handleDetails = (id) => {
         navigate(`/details/${id}`);
@@ -12,18 +14,19 @@ const ShowPost = ({ post, refetch }) => {
         queryKey: ['share', post?._id],
         queryFn: async () => {
             const res = await axiosPublic(`/share/${post?._id}`);
-            console.log(res.data);
+            console.log(share)
             return res.data;
         }
     });
 
-    const { data: comment, refetch: commentRefech } = useQuery({
-        queryKey: ['comment', post?._id],
-        queryFn: async () => {
-            const res = await axiosPublic(`/comment/${post?._id}`);
-            return res.data;
-        }
-    });
+        const { data: comment, refetch: commentRefech } = useQuery({
+            queryKey: ['comment', post?._id],
+            queryFn: async () => {
+                const res = await axiosPublic(`/comment/${post?._id}`);
+                console.log(comment);
+                return res.data;
+            }
+        });
 
     return (
         <div onClick={() => handleDetails(post?._id)} className="rounded-md bg-base-100 w-full py-4 shadow cursor-pointer">

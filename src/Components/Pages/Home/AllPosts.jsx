@@ -1,7 +1,6 @@
 import React from 'react';;
 import ShowPost from '../../Shared/ShowPost';
 
-
 const AllPosts = ({ allPost,refetch, isAllPostLoading, handleSort}) => {
 
     if (isAllPostLoading) {

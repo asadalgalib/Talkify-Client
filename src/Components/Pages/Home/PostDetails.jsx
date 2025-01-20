@@ -85,10 +85,11 @@ const PostDetails = () => {
 
     // ------------------------------------------------------------------------------------
 
-    const { data: comment, refetch: commentRefech } = useQuery({
+    const { data: postComment, refetch: commentRefech } = useQuery({
         queryKey: ['comment', post?._id],
         queryFn: async () => {
             const res = await axiosPublic(`/comment/${post?._id}`);
+            console.log(postComment);
             return res.data;
         }
     });
@@ -100,6 +101,14 @@ const PostDetails = () => {
             return toast.error('Please Login first');
         }
         const { email, displayName: name, photoURL: photo } = user;
+
+        if (postComment) {
+            const same = postComment.find(p => p.email == email);
+            if (same) {
+                return toast.error('You can make only one comment');
+            }
+        }
+
         const comment = data.comment;
         const postId = post?._id;
         console.log({ email, name, photo, comment, postId });
@@ -154,7 +163,6 @@ const PostDetails = () => {
         queryKey: ['share', post?._id],
         queryFn: async () => {
             const res = await axiosPublic(`/share/${post?._id}`);
-            console.log(res.data);
             return res.data;
         }
     });
@@ -210,7 +218,7 @@ const PostDetails = () => {
                     </div>
                     <div className=''>
                         <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
-                            {comment?.length} Comments
+                            {postComment?.length} Comments
                         </span>
                     </div>
                     <div>
@@ -244,10 +252,10 @@ const PostDetails = () => {
                 </div>
                 <div className="divider my-[2px] px-2"></div>
                 {
-                    comment?.length > 0 &&
+                    postComment?.length > 0 &&
                     <div>
                         {
-                            comment.map(c =>
+                            postComment.map(c =>
                                 <div key={c._id} className='my-2'>
                                     <div className='flex items-start gap-3'>
                                         <div className="avatar">
