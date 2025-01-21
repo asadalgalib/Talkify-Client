@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
 import DataNotFound from '../../Shared/DataNotFound';
+import { Link } from 'react-router-dom';
 
 const MyPosts = () => {
     const [userAllPost, isPostLoading, error, refetch] = useUserAllPosts();
@@ -49,7 +50,7 @@ const MyPosts = () => {
     if (isPostLoading) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
     }
-    if(userAllPost.length <= 0){
+    if (userAllPost.length <= 0) {
         return <DataNotFound></DataNotFound>
     }
     return (
@@ -94,9 +95,11 @@ const MyPosts = () => {
                                         </div>
                                     </td>
                                     <td className='text-neutral'>
-                                        <div className='grid grid-cols-1 items-start gap-2'>
-                                            <button className='font-semibold text-2xl'><FaRegComment /></button>
-                                        </div>
+                                        <Link to={`/dashboard/user/report/${post._id}`}>
+                                            <div className='flex items-center justify-center gap-2 hover:bg-secondary hover:text-white py-2'>
+                                                <button className='font-semibold text-2xl'><FaRegComment /></button>
+                                            </div>
+                                        </Link>
                                     </td>
                                 </tr>)
                         }

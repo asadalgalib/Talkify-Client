@@ -59,9 +59,9 @@ const ShowPost = ({ post, refetch }) => {
                     </figure>
                 )}
             </div>
-            <div className='mt-1 px-5 flex items-center justify-start gap-4'>
+            <div className='mt-1 px-5 flex flex-wrap items-center justify-start gap-2'>
                 <div className=''>
-                    <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
+                    <span className='flex text-sm  font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
                         {post?.upVote} Like
                     </span>
                 </div>
@@ -72,12 +72,12 @@ const ShowPost = ({ post, refetch }) => {
                 </div>
                 <div className=''>
                     <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
-                        {comment ? comment?.length : 0} Comments
+                        {comment ? comment?.length : 0} Comment
                     </span>
                 </div>
                 <div>
                     <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
-                        {share ? share?.length : 0} Shares
+                        {share ? share?.length : 0} Share
                     </span>
                 </div>
             </div>

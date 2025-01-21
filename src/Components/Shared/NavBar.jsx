@@ -5,6 +5,7 @@ import './NavBar.css'
 import useAuth from '../../Custom/Hooks/useAuth';
 import useIsAdmin from '../../Custom/Hooks/useIsAdmin';
 import useAnnounce from '../../Custom/Hooks/useAnnounce';
+import Swal from 'sweetalert2';
 
 const NavBar = () => {
     const { user, logOutUser } = useAuth()
@@ -21,6 +22,17 @@ const NavBar = () => {
             htmlElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light'
         );
     };
+
+    const handleLogout = () => {
+        logOutUser();
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Logout Successfull",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
 
     return (
         <div className="xl:px-28 lg:px-20 px-4 navbar sticky top-0 z-40 bg-base-100 w-full">
@@ -113,7 +125,7 @@ const NavBar = () => {
                                     <p className="bg-secondary rounded pl-5 py-1 mb-2 font-semibold text-white">{user.displayName}</p>
                                     <ul className='py-1 font-semibold text-white '>
                                         <Link to={`${isAdmin ? '/dashboard/admin/profile' : '/dashboard/user/profile'}`}><li className='py-1 rounded pl-5 mb-1 bg-accent'>Dashboard</li></Link>
-                                        <li onClick={logOutUser} className='py-1 rounded pl-5 bg-accent cursor-pointer'><button >Logout</button></li>
+                                        <li onClick={handleLogout} className='py-1 rounded pl-5 bg-accent cursor-pointer'><button >Logout</button></li>
                                     </ul>
                                 </div>
                             </div>

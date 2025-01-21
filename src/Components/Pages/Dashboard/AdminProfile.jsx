@@ -28,8 +28,8 @@ const AdminProfile = () => {
     const [AllPostCount,isPostCountLoading] = useAllPostCount();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const data = [{ name: "User", value: userData?.length }, { name: 'Posts', value: allPost?.length },
-    { name: 'Reports', value: allPost?.length }, { name: 'Comments', value: allPost?.length },];
+    const data = [{ name: "User", value: userCount?.count }, { name: 'Posts', value: AllPostCount?.count },
+    { name: 'Reports', value: commentCount?.count }, { name: 'Comments', value: commentCount?.count },];
 
     const onSubmit = (tag) => {
         console.log(tag);
@@ -106,7 +106,7 @@ const AdminProfile = () => {
                             <IoMdWarning />
                         </div>
                         <div className='font-semibold flex items-center gap-2'>
-                            <h1 className='text-3xl'>{allPost?.length}</h1>
+                            <h1 className='text-3xl'>{commentCount?.count}</h1>
                             <p className='mt-1 text-2xl'>Reports</p>
                         </div>
                     </div>

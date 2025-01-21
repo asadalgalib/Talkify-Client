@@ -16,6 +16,7 @@ import Activities from "../Components/Pages/Dashboard/Activities";
 import Announce from "../Components/Pages/Dashboard/Announce";
 import AdminPrivate from "./AdminPrivate";
 import PostDetails from "../Components/Pages/Home/PostDetails";
+import Reports from "../Components/Pages/Dashboard/Reports";
 
 const Router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ const Router = createBrowserRouter([
             {
                 path: '/dashboard/user/myposts',
                 element : <UserPrivate><MyPosts></MyPosts></UserPrivate>
+            },
+            {
+                path : '/dashboard/user/report/:id',
+                element : <Reports></Reports>
             },
             // admin dashboard
             {

@@ -268,7 +268,7 @@ const PostDetails = () => {
                                             {
                                                 c?.email === post?.authorEmail && <div className='text-blue-600 bg-sky-200 py-[1px] text-center text-xs rounded-lg'>Author</div>
                                             }
-                                            <p className='p-1 bg-base-200 mt-2 rounded px-4 text-sm font-medium'>{c?.comment}</p>
+                                            <p className='p-1 bg-base-200 mt-2 rounded px-4 text-sm'>{c?.comment}</p>
                                         </div>
                                     </div>
                                     <div className="divider my-[2px] px-2"></div>

@@ -40,7 +40,7 @@ const UserDashboard = () => {
             <div className="drawer-side z-50">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <div className='bg-secondary min-h-screen pl-6'>
-                    <ul className="min-h-full w-60 xl:w-72 pt-16 lg:pt-5 mb-2 text-white">
+                    <ul className="min-h-full w-60 xl:w-72 pt-5 mb-2 text-white">
                         {
                             isAdmin ?
                                 // admin route
