@@ -1,13 +1,29 @@
 import React from 'react';
+import useIsAdmin from '../../Custom/Hooks/useIsAdmin';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Footer = () => {
+    const [isAdmin, isLoading] = useIsAdmin();
+    const location = useLocation()
     return (
-        <footer className="footer footer-center bg-slate-950 text-white rounded p-10">
+        <footer className={`footer footer-center bg-slate-950 text-white rounded p-10 ${ location.pathname == "/joinus/login" || location.pathname == "/joinus/signup" ? "hidden" : ""}`}>
             <nav className="grid grid-flow-col gap-4">
-                <a className="link link-hover">About us</a>
-                <a className="link link-hover">Contact</a>
-                <a className="link link-hover">Jobs</a>
-                <a className="link link-hover">Press kit</a>
+                {
+                    isAdmin ?
+                        // admin route
+                        <div className='list-none flex items-center gap-5'>
+                            <li className='mb-1 font-medium'><NavLink to={'/dashboard/admin/profile'}>Profile</NavLink></li>
+                            <li className='mb-1 font-medium'><NavLink to={'/dashboard/admin/activities'}>Activities</NavLink></li>
+                            <li className='mb-1 font-medium'><NavLink to={'/dashboard/admin/announce'}>Announce</NavLink></li>
+                        </div>
+                        :
+                        // user route
+                        <div className='list-none flex items-center gap-5'>
+                            <li className='mb-1 font-medium'><NavLink to={'/dashboard/user/profile'}>Profile</NavLink></li>
+                            <li className='mb-1 font-medium'><NavLink to={'/dashboard/user/addpost'}>Add Post</NavLink></li>
+                            <li className='mb-1 font-medium'><NavLink to={'/dashboard/user/myposts'}>My Posts</NavLink></li>
+                        </div>
+                }
             </nav>
             <nav>
                 <div className="grid grid-flow-col gap-4">
@@ -47,7 +63,7 @@ const Footer = () => {
                 </div>
             </nav>
             <aside>
-                <p>Copyright © {new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
+                <p>Copyright © {new Date().getFullYear()} - All right reserved by Talkify</p>
             </aside>
         </footer>
     );

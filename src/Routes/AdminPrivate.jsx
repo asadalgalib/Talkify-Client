@@ -5,10 +5,9 @@ import useIsAdmin from '../Custom/Hooks/useIsAdmin';
 const AdminPrivate = ({ children }) => {
     const location = useLocation();
     const { loading, user } = useAuth();
-    const [isAdmin, adminRefetch, isPending] = useIsAdmin()
-    // console.log(isAdmin);
+    const [isAdmin, adminRefetch, isLoading] = useIsAdmin()
 
-    if (loading && isPending) {
+    if (loading && isLoading || !isAdmin) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
     }
     else if (user && isAdmin) {

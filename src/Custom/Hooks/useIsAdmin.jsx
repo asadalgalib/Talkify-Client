@@ -6,15 +6,15 @@ const useIsAdmin = () => {
     const { user,loading } = useAuth();
 
     const axiosSecure = useAxiosSecure();
-    const { data: isAdmin, isPending, error, refetch : adminRefetch } = useQuery({
-        queryKey: ['isAdmin'],
+    const { data: isAdmin, isLoading, error, refetch : adminRefetch } = useQuery({
+        queryKey: ['isAdmin',user?.email],
         enabled : !loading,
         queryFn: async () => {
             const res = await axiosSecure.get(`/check/admin?email=${user?.email}`);
             return res.data;
         }
     })
-    return [isAdmin, adminRefetch, isPending];
+    return [isAdmin, adminRefetch, isLoading];
 };
 
 export default useIsAdmin;

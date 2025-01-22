@@ -38,7 +38,7 @@ const ShowPost = ({ post, refetch }) => {
                         </div>
                     </div>
                     <div>
-                        <h1 className='font-semibold'>{post?.authorName}</h1>
+                        <h1 className='font-semibold text-neutral'>{post?.authorName}</h1>
                         <div className='flex items-center gap-2 mt-1'>
                             <p className='text-sm'>{post?.currentDate}</p>
                             <p className='text-sm'><span>{post.currentTime}</span></p>
@@ -47,7 +47,7 @@ const ShowPost = ({ post, refetch }) => {
                 </div>
             </div>
             <div className='px-5 mt-3'>
-                <h2 className='font-medium'>{post?.title}</h2>
+                <h2 className='font-medium text-neutral'>{post?.title}</h2>
             </div>
             <div className='px-5 mt-1'>
                 {post?.tag && <h1>#{post?.tag}</h1>}
@@ -59,7 +59,7 @@ const ShowPost = ({ post, refetch }) => {
                     </figure>
                 )}
             </div>
-            <div className='mt-1 px-5 flex flex-wrap items-center justify-start gap-2'>
+            <div className='mt-1 px-5 flex flex-wrap items-center justify-start gap-1 md:gap-2 lg:gap-4'>
                 <div className=''>
                     <span className='flex text-sm  font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
                         {post?.upVote} Like

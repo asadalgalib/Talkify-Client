@@ -183,7 +183,7 @@ const PostDetails = () => {
                             </div>
                         </div>
                         <div>
-                            <h1 className='font-semibold'>{post?.authorName}</h1>
+                            <h1 className='font-semibold text-neutral'>{post?.authorName}</h1>
                             <div className='flex items-center gap-2 mt-1'>
                                 <p className='text-sm'>{post?.currentDate}</p>
                                 <p className='text-sm'><span>{post.currentTime}</span></p>
@@ -192,8 +192,8 @@ const PostDetails = () => {
                     </div>
                 </div>
                 <div className='px-5 mt-3'>
-                    <h2 className='font-medium'>{post?.title}</h2>
-                    <h1 className='mt-1'>{post?.description}</h1>
+                    <h2 className='font-medium text-neutral'>{post?.title}</h2>
+                    <h1 className='mt-1 '>{post?.description}</h1>
                 </div>
                 <div className='px-5 mt-1'>
                     {post?.tag && <h1>#{post?.tag}</h1>}
@@ -205,7 +205,7 @@ const PostDetails = () => {
                         </figure>
                     )}
                 </div>
-                <div className='mt-1 px-5 flex items-center justify-start gap-4'>
+                <div className='mt-1 px-5 flex flex-wrap items-center justify-start gap-1 md:gap-2 lg:gap-4'>
                     <div className=''>
                         <span className='text-sm font-semibold badge-secondary px-2 py-1 rounded-md text-white'>
                             {post?.upVote} Like
@@ -228,7 +228,7 @@ const PostDetails = () => {
                     </div>
                 </div>
                 <div className="divider my-[2px] px-2"></div>
-                <div className='px-5 pb-1 flex flex-wrap items-center justify-between gap-2'>
+                <div className='px-5 pb-1 flex items-center justify-between gap-2'>
                     <div onClick={() => handleUpvote(post?._id)} className='w-full flex items-center justify-center py-2 rounded text-neutral hover:text-black hover:bg-slate-200'>
                         <button className='flex items-center lg:text-3xl text-2xl'>
                             <BiLike />
@@ -264,7 +264,7 @@ const PostDetails = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <h1 className='font-semibold text-sm'>{c?.name}</h1>
+                                            <h1 className='font-semibold text-sm text-neutral'>{c?.name}</h1>
                                             {
                                                 c?.email === post?.authorEmail && <div className='text-blue-600 bg-sky-200 py-[1px] text-center text-xs rounded-lg'>Author</div>
                                             }
