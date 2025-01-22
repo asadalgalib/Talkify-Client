@@ -16,20 +16,20 @@ import { useNavigate } from 'react-router-dom';
 import useUserCount from '../../../Custom/Hooks/useUserCount';
 import useAllPostCount from '../../../Custom/Hooks/useAllPostCount';
 import useCommentCount from '../../../Custom/Hooks/useCommentCount';
+import useReportCount from '../../../Custom/Hooks/useReportCount';
 
 const AdminProfile = () => {
     const { user } = useAuth();
-    const [allPost] = useAllPost();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
-    const [userData] = useUserData();
+    const [reportCount] = useReportCount()
     const [userCount,isCountLoading] = useUserCount();
     const [commentCount] = useCommentCount();
     const [AllPostCount,isPostCountLoading] = useAllPostCount();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const data = [{ name: "User", value: userCount?.count }, { name: 'Posts', value: AllPostCount?.count },
-    { name: 'Reports', value: commentCount?.count }, { name: 'Comments', value: commentCount?.count },];
+    { name: 'Reports', value: reportCount?.count }, { name: 'Comments', value: commentCount?.count }];
 
     const onSubmit = (tag) => {
         console.log(tag);
@@ -51,7 +51,7 @@ const AdminProfile = () => {
             .catch(err => {
                 toast.error(err.code);
             })
-    }
+    };
 
     return (
         <div className='lg:my-14 md:my-8 my-4 min-h-screen lg:mx-14 md:mx-8 mx-4 mb-10'>
@@ -106,7 +106,7 @@ const AdminProfile = () => {
                             <IoMdWarning />
                         </div>
                         <div className='font-semibold flex items-center gap-2'>
-                            <h1 className='text-3xl'>{commentCount?.count}</h1>
+                            <h1 className='text-3xl'>{reportCount?.count}</h1>
                             <p className='mt-1 text-2xl'>Reports</p>
                         </div>
                     </div>

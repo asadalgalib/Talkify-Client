@@ -88,7 +88,7 @@ const PostDetails = () => {
     const { data: postComment, refetch: commentRefech } = useQuery({
         queryKey: ['comment', post?._id],
         queryFn: async () => {
-            const res = await axiosPublic(`/comment/${post?._id}`);
+            const res = await axiosPublic.get(`/comment/${post?._id}`);
             console.log(postComment);
             return res.data;
         }
@@ -228,7 +228,7 @@ const PostDetails = () => {
                     </div>
                 </div>
                 <div className="divider my-[2px] px-2"></div>
-                <div className='px-5 pb-1 flex items-center justify-between gap-2'>
+                <div className='px-5 pb-1 flex flex-wrap items-center justify-between gap-2'>
                     <div onClick={() => handleUpvote(post?._id)} className='w-full flex items-center justify-center py-2 rounded text-neutral hover:text-black hover:bg-slate-200'>
                         <button className='flex items-center lg:text-3xl text-2xl'>
                             <BiLike />

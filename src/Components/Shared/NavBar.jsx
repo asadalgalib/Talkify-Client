@@ -56,7 +56,7 @@ const NavBar = () => {
                 <div className='ml-10 hidden md:flex'>
                     <ul className="flex text-neutral items-center">
                         <li className='px-4'><NavLink to={'/'}>Home</NavLink></li>
-                        <li className='px-4'><NavLink >Membership</NavLink></li>
+                        <li className='px-4'><NavLink to={'/membership'}>Membership</NavLink></li>
                         <li className='px-4'></li>
                     </ul>
                 </div>

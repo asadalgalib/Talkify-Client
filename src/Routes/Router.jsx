@@ -17,6 +17,8 @@ import Announce from "../Components/Pages/Dashboard/Announce";
 import AdminPrivate from "./AdminPrivate";
 import PostDetails from "../Components/Pages/Home/PostDetails";
 import Reports from "../Components/Pages/Dashboard/Reports";
+import Comment from "../Components/Pages/Dashboard/Comment";
+import Member from "../Components/Pages/Home/Member";
 
 const Router = createBrowserRouter([
     {
@@ -31,6 +33,10 @@ const Router = createBrowserRouter([
             {
                 path: '/details/:id',
                 element: <PostDetails></PostDetails>
+            },
+            {
+                path : '/membership',
+                element : <Member></Member>
             },
             {
                 path: '/joinus',
@@ -86,6 +92,10 @@ const Router = createBrowserRouter([
                 path: '/dashboard/admin/announce',
                 element : <AdminPrivate><Announce></Announce></AdminPrivate>
             },
+            {
+                path: '/dashboard/admin/comment/:id',
+                element: <AdminPrivate><Comment></Comment></AdminPrivate>
+            }
         ]
     }
 ])

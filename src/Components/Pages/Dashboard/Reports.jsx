@@ -19,7 +19,7 @@ const Reports = () => {
     const { data: postComment, refetch: commentRefech } = useQuery({
         queryKey: ['comment', id],
         queryFn: async () => {
-            const res = await axiosPublic(`/comment/${id}`);
+            const res = await axiosPublic.get(`/comment/${id}`);
             console.log(postComment);
             return res.data;
         }
@@ -32,12 +32,13 @@ const Reports = () => {
     };
 
     // setDisabledId(prev => ({ ...prev, [id]: true }));
-    const handleReport = (id) => {
+    const handleReport = (id,Id) => {
         const FeedBackText = feedback[id];
         const userName = user.displayName;
         const userEmail = user.email;
         const commentId = id;
-        const report = { FeedBackText, userName, userEmail, commentId }
+        const PostId = Id;
+        const report = { FeedBackText, userName, userEmail, commentId,PostId }
         console.log(report);
 
         axiosSecure.post('/report', report)
@@ -119,7 +120,7 @@ const Reports = () => {
                                     <td>
                                         <button
                                             disabled={disabledId[comment?._id] === undefined ? true : disabledId[comment?._id]}
-                                            onClick={() => handleReport(comment?._id)}
+                                            onClick={() => handleReport(comment?._id,comment?.postId)}
                                             className={`font-semibold flex text-lf items-center justify-center gap-2 ${disabledId[comment?._id] === undefined ? 'bg-base-200' : disabledId[comment?._id] ? 'bg-base-200' : 'bg-secondary'} text-white py-2 px-4 rounded`}
                                         >
                                             Report
