@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import useUserCount from "../../../Custom/Hooks/useUserCount";
 import DataNotFound from "../../Shared/DataNotFound";
 import useSingleUser from "../../../Custom/Hooks/useSingleUser";
+import { Helmet } from "react-helmet";
 
 const ManageUsers = () => {
     const [userData, refetch, isLoading, currentPage, setCurrentPage, pageSize, setSearch] = useUserData();
@@ -104,6 +105,9 @@ const ManageUsers = () => {
     }
     return (
         <div className='lg:my-14 md:my-8 my-4 min-h-screen lg:mx-14 md:mx-8 mx-4 mb-10'>
+             <Helmet>
+                <title>Talkify - Manage Users</title>
+            </Helmet>
             <div className='mb-5 bg-base-100 lg:py-10 py-5 lg:px-12 px-5 shadow rounded-md flex flex-col lg:flex-row gap-5 items-center justify-between'>
                 <div>
                     <h1 className='lg:text-3xl text-2xl font-semibold text-neutral'>Manage Total {userCount?.count} User</h1>

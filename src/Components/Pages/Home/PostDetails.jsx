@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import Share from './Share';
 import { ImCross } from 'react-icons/im';
+import { Helmet } from 'react-helmet';
 
 const PostDetails = () => {
     const { id } = useParams();
@@ -168,6 +169,9 @@ const PostDetails = () => {
     }
     return (
         <div className='max-w-2xl lg:mx-auto md:md:mx-8 mx-4 lg:my-14 my-8 p-4 bg-base-100 rounded-md shadow'>
+            <Helmet>
+                <title>Talkify - Details</title>
+            </Helmet>
             <div className="mt-5">
                 <div className='px-2'>
                     <div className='flex items-end gap-3'>

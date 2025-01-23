@@ -2,6 +2,7 @@ import React from 'react';
 import useReport from '../../../Custom/Hooks/useReport';
 import { Link, Navigate } from 'react-router-dom';
 import { ImCross } from 'react-icons/im';
+import { Helmet } from 'react-helmet';
 
 const Activities = () => {
     const [report, reportRefetch, reportLoading] = useReport();
@@ -11,6 +12,9 @@ const Activities = () => {
     }
     return (
         <div className='lg:my-14 md:my-8 my-4 min-h-screen lg:mx-14 md:mx-8 mx-4 mb-10'>
+             <Helmet>
+                <title>Talkify - Activities</title>
+            </Helmet>
             <div className='mb-5 bg-base-100 lg:py-10 py-5 lg:px-12 px-5 shadow rounded-md flex items-center justify-center'>
                 <h1 className='lg:text-3xl text-2xl font-semibold text-neutral'>Total {report?.length} Reports</h1>
             </div>

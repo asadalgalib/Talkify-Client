@@ -6,6 +6,7 @@ import useAuth from '../../Custom/Hooks/useAuth';
 import useIsAdmin from '../../Custom/Hooks/useIsAdmin';
 import useAnnounce from '../../Custom/Hooks/useAnnounce';
 import Swal from 'sweetalert2';
+import logo from '../../assets/icons8-t-67.png'
 
 const NavBar = () => {
     const { user, logOutUser } = useAuth()
@@ -52,7 +53,12 @@ const NavBar = () => {
                 </label>
             </div>
             <div className="mx-2 flex-1 px-2">
-                <h1 className='lg:text-3xl text-2xl  text-neutral font-semibold'>Talkify</h1>
+                <div className='flex items-center justify-center gap-4'>
+                    <div>
+                        <img src={logo} className='w-10 lg:w-12' alt="" />
+                    </div>
+                    <h1 className='lg:text-3xl text-2xl hidden lg:inline text-neutral font-semibold'>Talkify</h1>
+                </div>
                 <div className='ml-10 hidden md:flex'>
                     <ul className="flex text-neutral items-center">
                         <li className='px-4'><NavLink to={'/'}>Home</NavLink></li>

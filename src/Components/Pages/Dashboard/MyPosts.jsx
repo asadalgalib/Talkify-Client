@@ -8,6 +8,7 @@ import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
 import DataNotFound from '../../Shared/DataNotFound';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const MyPosts = () => {
     const [userAllPost, isPostLoading, error, refetch] = useUserAllPosts();
@@ -42,8 +43,6 @@ const MyPosts = () => {
         });
     }
 
-
-
     if (isPostLoading) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
     }
@@ -52,6 +51,9 @@ const MyPosts = () => {
     }
     return (
         <div className='my-10 lg:my-16 min-h-screen lg:mx-14 md:mx-8 mx-4 mb-10'>
+             <Helmet>
+                <title>Talkify - My Posts</title>
+            </Helmet>
             <div className='mb-5 bg-base-100 h-24 shadow rounded-md flex items-center justify-center'>
                 <h1 className='lg:text-3xl text-2xl font-semibold text-neutral'>My All Posts</h1>
             </div>

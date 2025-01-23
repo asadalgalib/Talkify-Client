@@ -3,6 +3,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from './CheckoutForm';
 import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet';
 
 // ad key
 const stripePromise = loadStripe(import.meta.env.VITE_payment_key);
@@ -23,7 +24,7 @@ const Member = () => {
 
         const form = e.target;
         const pack = form.value;
-       
+
         if (pack === 'one') {
             setAmount(1.99);
         }
@@ -37,13 +38,16 @@ const Member = () => {
 
     return (
         <div className="xl:mx-28 lg:mx-20 mx-4  my-4 md:my-8 lg:my-14 min-h-[60vh]">
+            <Helmet>
+                <title>Talkify - Membership</title>
+            </Helmet>
             <div className='py-6 bg-base-100 max-w-lg mx-auto rounded-md shadow'>
                 <h1 className='text-center lg:text-3xl text-2xl font-semibold text-neutral'>Get Membership</h1>
                 {
-                    secret ?  
-                    <p className='text-center'><i>Enter Your Details</i></p>
-                    : 
-                    <p className='text-center'><i>Select a Pack First</i></p>
+                    secret ?
+                        <p className='text-center'><i>Enter Your Details</i></p>
+                        :
+                        <p className='text-center'><i>Select a Pack First</i></p>
                 }
             </div>
             <div className='max-w-lg mx-auto mt-3 bg-base-100 rounded-md p-2'>
@@ -68,11 +72,11 @@ const Member = () => {
             </div>
             {/* {
                 secret && */}
-                <div className='max-w-lg mx-auto bg-base-100 mt-5 p-4 rounded-md shadow'>
-                    <Elements stripe={stripePromise}>
-                        <CheckoutForm secret={secret}></CheckoutForm>
-                    </Elements>
-                </div>
+            <div className='max-w-lg mx-auto bg-base-100 mt-5 p-4 rounded-md shadow'>
+                <Elements stripe={stripePromise}>
+                    <CheckoutForm secret={secret}></CheckoutForm>
+                </Elements>
+            </div>
             {/* } */}
         </div>
     );

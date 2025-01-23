@@ -15,6 +15,7 @@ import useUserCount from '../../../Custom/Hooks/useUserCount';
 import useAllPostCount from '../../../Custom/Hooks/useAllPostCount';
 import useCommentCount from '../../../Custom/Hooks/useCommentCount';
 import useReportCount from '../../../Custom/Hooks/useReportCount';
+import { Helmet } from 'react-helmet';
 
 const AdminProfile = () => {
     const { user } = useAuth();
@@ -51,6 +52,9 @@ const AdminProfile = () => {
 
     return (
         <div className='lg:my-14 md:my-8 my-4 min-h-screen lg:mx-14 md:mx-8 mx-4 mb-10'>
+             <Helmet>
+                <title>Talkify - Admin Profile</title>
+            </Helmet>
             <div className='lg:py-10 py-5 lg:px-12 px-5 flex flex-col-reverse gap-5 lg:flex-row items-center justify-between bg-base-100 rounded-md shadow'>
                 <div className='text-center lg:text-left text-neutral'>
                     <h1 className='lg:text-3xl text-2xl font-semibold '>Hey! {user?.displayName} Welcome.</h1>

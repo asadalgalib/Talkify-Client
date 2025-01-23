@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 const Announce = () => {
     const { user } = useAuth()
@@ -38,6 +39,9 @@ const Announce = () => {
 
     return (
         <div className='grid grid-cols-1 items-center min-h-screen'>
+             <Helmet>
+                <title>Talkify - Announce</title>
+            </Helmet>
             <div className='lg:px-14 md:px-8 px-4 lg:mx-14 md:mx-8 mx-4 lg:py-16 md:py-10 py-8 bg-base-100 rounded-md'>
                 <div>
                     <h1 className='lg:text-3xl text-2xl font-semibold text-center text-neutral'>Add Announcement</h1>

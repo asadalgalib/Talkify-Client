@@ -5,6 +5,7 @@ import gold from '../../../assets/gold.png'
 import useRecentPost from '../../../Custom/Hooks/useRecentPost';
 import ShowPost from '../../Shared/ShowPost';
 import useSingleUser from '../../../Custom/Hooks/useSingleUser';
+import { Helmet } from 'react-helmet';
 
 const MyProfile = () => {
     const { user } = useAuth()
@@ -17,6 +18,9 @@ const MyProfile = () => {
 
     return (
         <div className='mb-10'>
+            <Helmet>
+                <title>Talkify - My Profile</title>
+            </Helmet>
             <div>
                 <div className='lg:min-h-40 md:min-h-32 min-h-24 bg-accent'>
 

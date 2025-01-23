@@ -9,6 +9,7 @@ import useUserAllPosts from '../../../Custom/Hooks/useUserAllPosts';
 import GetMember from './GetMember'
 import useSingleUser from '../../../Custom/Hooks/useSingleUser';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 const image_hosting_key = import.meta.env.VITE_image_hosting_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -85,6 +86,9 @@ const AddPost = () => {
     }
     return (
         <div className='grid grid-cols-1 items-center min-h-screen'>
+            <Helmet>
+                <title>Talkify - Add Post</title>
+            </Helmet>
             <div className='lg:px-14 md:px-8 px-4 lg:mx-14 md:mx-8 mx-4 lg:py-16 md:py-10 py-8 bg-base-100 rounded-md'>
                 <div>
                     <h1 className='lg:text-3xl text-2xl font-semibold text-center text-neutral'>Create Post</h1>
