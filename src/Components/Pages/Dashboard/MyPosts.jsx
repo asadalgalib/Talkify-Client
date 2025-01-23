@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 const MyPosts = () => {
     const [userAllPost, isPostLoading, error, refetch] = useUserAllPosts();
     const axiosSecure = useAxiosSecure();
-    console.log(userAllPost);
 
     const handleDelete = id => {
         Swal.fire({
@@ -27,7 +26,6 @@ const MyPosts = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/userpost/delete?id=${id}`)
                     .then(res => {
-                        console.log(res.data);
                         if (res.data.deletedCount > 0) {
                             refetch();
                             Swal.fire({
@@ -40,7 +38,6 @@ const MyPosts = () => {
                     .catch(err => {
                         toast.error(err.code);
                     })
-                console.log(id);
             }
         });
     }

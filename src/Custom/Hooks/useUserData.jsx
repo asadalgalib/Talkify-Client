@@ -5,8 +5,7 @@ import { useState } from 'react';
 
 const useUserData = () => {
     const { user } = useAuth();
-    const [search,setSearch] = useState(' ')
-    console.log(search);
+    const [search,setSearch] = useState(' ');
     const [currentPage, setCurrentPage] = useState(0);
     const [pageSize,setPageSize] = useState(10);
 

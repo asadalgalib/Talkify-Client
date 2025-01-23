@@ -1,8 +1,6 @@
 import React from 'react';
 import useAuth from '../../../Custom/Hooks/useAuth';
-import useAllPost from '../../../Custom/Hooks/useAllPost';
 import { MdEventNote } from 'react-icons/md';
-import useUserData from '../../../Custom/Hooks/useUserData';
 import { PiUsersFourFill } from 'react-icons/pi';
 import { FaRegComment } from 'react-icons/fa';
 import { IoMdWarning } from 'react-icons/io';
@@ -32,10 +30,8 @@ const AdminProfile = () => {
     { name: 'Reports', value: reportCount?.count }, { name: 'Comments', value: commentCount?.count }];
 
     const onSubmit = (tag) => {
-        console.log(tag);
         axiosSecure.post('/post/tag', { tag })
             .then(res => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",

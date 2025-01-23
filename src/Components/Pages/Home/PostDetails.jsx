@@ -47,7 +47,6 @@ const PostDetails = () => {
         axiosSecure.put(`/upVote/post?id=${id}`, { email })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
-                    console.log(res.data);
                     toast.success('Thanks for Like')
                     refetch();
                 }
@@ -73,7 +72,6 @@ const PostDetails = () => {
         axiosSecure.put(`/downVote/post?id=${id}`, { email })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
-                    console.log(res.data);
                     toast.success('Dislike submited');
                     refetch();
                 }
@@ -89,7 +87,6 @@ const PostDetails = () => {
         queryKey: ['comment', post?._id],
         queryFn: async () => {
             const res = await axiosPublic.get(`/comment/${post?._id}`);
-            console.log(postComment);
             return res.data;
         }
     });
@@ -111,11 +108,9 @@ const PostDetails = () => {
 
         const comment = data.comment;
         const postId = post?._id;
-        console.log({ email, name, photo, comment, postId });
 
         axiosSecure.post('/comment', { email, name, photo, comment, postId })
             .then(res => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",
@@ -149,7 +144,6 @@ const PostDetails = () => {
         const postId = post?._id;
         axiosPublic.post('/share', { postId })
             .then(res => {
-                console.log(res.data);
                 shareRefech();
             })
             .catch(err => {

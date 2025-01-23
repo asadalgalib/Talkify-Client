@@ -16,11 +16,9 @@ const Announce = () => {
         const { title, description } = data;
         const { displayName: name, photoURL: photo } = user;
         const announce = { name, photo, title, description }
-        console.log(announce);
 
         axiosSecure.post('/announce', announce)
             .then(res => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                     reset();
                     Swal.fire({

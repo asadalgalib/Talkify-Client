@@ -14,7 +14,6 @@ const ShowPost = ({ post, refetch }) => {
         queryKey: ['share', post?._id],
         queryFn: async () => {
             const res = await axiosPublic(`/share/${post?._id}`);
-            console.log(share)
             return res.data;
         }
     });
@@ -23,7 +22,6 @@ const ShowPost = ({ post, refetch }) => {
             queryKey: ['comment', post?._id],
             queryFn: async () => {
                 const res = await axiosPublic(`/comment/${post?._id}`);
-                console.log(comment);
                 return res.data;
             }
         });

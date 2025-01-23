@@ -4,7 +4,6 @@ import useIsAdmin from '../Custom/Hooks/useIsAdmin';
 
 const UserDashboard = () => {
     const [isAdmin,isLoading] = useIsAdmin();
-    // console.log(isAdmin,isLoading);
 
     const handleTheme = () => {
         const htmlElement = document.documentElement;

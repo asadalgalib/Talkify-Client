@@ -5,21 +5,6 @@ import { ImCross } from 'react-icons/im';
 
 const Activities = () => {
     const [report, reportRefetch, reportLoading] = useReport();
-    console.log(report);
-
-
-    // -------------------------------------------------------------------------
-
-    const openModal = () => {
-        document.getElementById('my_modal_1').showModal();
-    }
-
-    const closeModal = () => {
-        document.getElementById('my_modal_1').close();
-    }
-
-    // -------------------------------------------------------------------------
-
 
     if (reportLoading) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>

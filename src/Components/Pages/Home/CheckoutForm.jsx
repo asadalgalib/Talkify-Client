@@ -20,7 +20,6 @@ const CheckoutForm = ({ secret }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const confirmEmail = e.target.confirmEmail.value;
-        console.log(confirmEmail);
 
         if (!user) {
             toast.error('Please Login First');
@@ -48,11 +47,9 @@ const CheckoutForm = ({ secret }) => {
         })
 
         if (error) {
-            console.log('payment error', error);
             setError(error.message);
         }
         else {
-            console.log('paymentMethod', paymentMethod);
             setError(' ');
         }
 
@@ -68,11 +65,9 @@ const CheckoutForm = ({ secret }) => {
         })
 
         if (confirmError) {
-            console.log('payment error', error);
             setError(confirmError.message);
         }
         else {
-            console.log('paymentIntent', paymentIntent);
             if (paymentIntent.status === 'succeeded') {
 
                 setError(' ');
@@ -83,7 +78,6 @@ const CheckoutForm = ({ secret }) => {
                 const payed = paymentIntent.amount / 100;
                 axiosSecure.put(`/make/member?email=${user?.email}`, { payed })
                     .then(res => {
-                        console.log(res.data);
                         if (res.data.modifiedCount > 0) {
                             Swal.fire({
                                 position: "center",

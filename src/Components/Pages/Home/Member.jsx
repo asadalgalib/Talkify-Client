@@ -11,22 +11,19 @@ const Member = () => {
     const [amount, setAmount] = useState("");
     const axiosSecure = useAxiosSecure();
     const [secret, setSecret] = useState('');
-    console.log(secret);
 
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price: amount })
             .then(res => {
                 setSecret(res.data.clientSecret)
             })
-
-        console.log(amount);
     }, [axiosSecure, amount])
 
     const handleAmount = e => {
 
         const form = e.target;
         const pack = form.value;
-        console.log(pack);
+       
         if (pack === 'one') {
             setAmount(1.99);
         }

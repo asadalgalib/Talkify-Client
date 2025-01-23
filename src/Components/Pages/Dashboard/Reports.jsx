@@ -20,7 +20,6 @@ const Reports = () => {
         queryKey: ['comment', id],
         queryFn: async () => {
             const res = await axiosPublic.get(`/comment/${id}`);
-            console.log(postComment);
             return res.data;
         }
     });
@@ -39,16 +38,14 @@ const Reports = () => {
         const commentId = id;
         const PostId = Id;
         const report = { FeedBackText, userName, userEmail, commentId,PostId }
-        console.log(report);
 
         axiosSecure.post('/report', report)
             .then(res => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Announcement Added Successfully",
+                        title: "Reported Successfully",
                         showConfirmButton: false,
                         timer: 1500
                     });

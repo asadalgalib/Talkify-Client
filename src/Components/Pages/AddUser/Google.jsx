@@ -6,6 +6,7 @@ import { signInWithPopup } from 'firebase/auth';
 import useAxiosPublic from '../../../Custom/Hooks/useAxiosPublic';
 import useIsAdmin from '../../../Custom/Hooks/useIsAdmin';
 import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 const Google = () => {
     const { user, setUser, auth, provider } = useAuth()
@@ -44,7 +45,7 @@ const Google = () => {
                         }, 1000)
                     })
                     .catch(err => {
-                        console.log(err.code);
+                        toast.error(err.code);
                     })
             })
     }

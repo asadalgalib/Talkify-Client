@@ -8,6 +8,7 @@ import useAuth from '../../../Custom/Hooks/useAuth';
 import Swal from 'sweetalert2';
 import useIsAdmin from '../../../Custom/Hooks/useIsAdmin';
 import useAxiosSecure from '../../../Custom/Hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const { user, logInUser } = useAuth();
@@ -17,7 +18,6 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (userData) => {
-        console.log(userData)
 
         if (user) {
             return Swal.fire({
@@ -44,7 +44,7 @@ const Login = () => {
 
             })
             .catch(err => {
-                console.log(err.code);
+                toast.error(err.code);
             })
     }
 

@@ -5,6 +5,7 @@ import useAuth from '../../../Custom/Hooks/useAuth';
 import { useForm } from "react-hook-form"
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../Custom/Hooks/useAxiosPublic'
+import { toast } from 'react-toastify';
 
 
 const Signup = () => {
@@ -14,7 +15,6 @@ const Signup = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (userData) => {
-        console.log(userData)
 
         const { name, photo, email } = userData;
 
@@ -46,11 +46,11 @@ const Signup = () => {
                         }
                     })
                     .catch(err => {
-                        console.log(err.code);
+                        toast.error(err.code);
                     })
             })
             .catch(err => {
-                console.log(err.code);
+                toast.error(err.code);
             })
     }
 

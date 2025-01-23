@@ -10,7 +10,6 @@ const useSingleUser = () => {
         queryKey: ['activeUser', user?.email],
         queryFn: async () => {
             const res = await axiosPublic.get(`/active/user?email=${user?.email}`);
-            console.log(res.data);
             return res.data;
         }
     })

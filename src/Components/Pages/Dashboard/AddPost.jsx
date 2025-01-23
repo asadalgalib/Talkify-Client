@@ -8,6 +8,7 @@ import useTags from '../../../Custom/Hooks/useTags';
 import useUserAllPosts from '../../../Custom/Hooks/useUserAllPosts';
 import GetMember from './GetMember'
 import useSingleUser from '../../../Custom/Hooks/useSingleUser';
+import { toast } from 'react-toastify';
 
 const image_hosting_key = import.meta.env.VITE_image_hosting_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -24,7 +25,6 @@ const AddPost = () => {
     let postImage;
 
     let createdAt = new Date();
-    console.log(createdAt);
     const currentDate = createdAt.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
     let hours = createdAt.getHours();
     let minutes = createdAt.getMinutes();
@@ -57,11 +57,9 @@ const AddPost = () => {
             authorName, authorImage, authorEmail, title, tag, postImage, description,
             upVote, downVote, currentDate, currentTime, createdAt
         };
-        console.log(postData);
 
         axiosSecure.post('/post', postData)
             .then(res => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",
@@ -75,14 +73,14 @@ const AddPost = () => {
                 }
             })
             .catch(err => {
-                console.log(err.code);
+                toast.error(err.code);
             })
     }
 
     if (isPostLoading) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
     }
-    if (userAllPost.length >= 5 && !activeUser?.membership) {
+    if (!activeUser?.membership && userAllPost.length >= 5) {
         return <GetMember></GetMember>
     }
     return (
