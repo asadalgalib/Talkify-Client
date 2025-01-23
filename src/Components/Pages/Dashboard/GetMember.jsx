@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const GetMember = () => {
     return (
@@ -8,7 +9,7 @@ const GetMember = () => {
                     <h1 className=' text-4xl text-center font-semibold'>Please become a Member</h1>
                     <p className='mt-2'><i>Only five you can post as a free user</i></p>
                     <p className='font-semibold text-lg'>You have reached the posting limit.</p>
-                    <button className='bg-secondary px-4 py-2 rounded-md text-white font-semibold mt-5'>Get Membership</button>
+                    <Link to={'/membership'} className='bg-secondary px-4 py-2 rounded-md text-white font-semibold mt-5'><button >Get Membership</button></Link>
                 </div>
             </div>
         </div>

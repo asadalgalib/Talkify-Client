@@ -4,10 +4,9 @@ import Swal from "sweetalert2";
 import useAuth from "../../../Custom/Hooks/useAuth";
 import useAxiosSecure from "../../../Custom/Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
 import useUserCount from "../../../Custom/Hooks/useUserCount";
-import { keys } from "localforage";
 import DataNotFound from "../../Shared/DataNotFound";
+import useSingleUser from "../../../Custom/Hooks/useSingleUser";
 
 const ManageUsers = () => {
     const [userData, refetch, isLoading, currentPage, setCurrentPage, pageSize, setSearch] = useUserData();
@@ -178,8 +177,8 @@ const ManageUsers = () => {
                                     </td>
                                     <td className='text-neutral'>
                                         {
-                                            user?.isMember === true ?
-                                                <p className="px-2 py-1 bg-green-600 font-semibold">Active</p>
+                                            user?.membership ?
+                                                <p className="px-2 py-1 text-green-600 font-semibold">Active</p>
                                                 :
                                                 <p className="px-2 py-1 text-red-600 font-semibold">Deactive</p>
                                         }

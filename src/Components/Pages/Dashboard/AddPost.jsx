@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import useTags from '../../../Custom/Hooks/useTags';
 import useUserAllPosts from '../../../Custom/Hooks/useUserAllPosts';
 import GetMember from './GetMember'
+import useSingleUser from '../../../Custom/Hooks/useSingleUser';
 
 const image_hosting_key = import.meta.env.VITE_image_hosting_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -15,6 +16,7 @@ const AddPost = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { user } = useAuth();
     const [allTags] = useTags();
+    const [activeUser, isActiveUserLoading] = useSingleUser();
     const [userAllPost, isPostLoading, error, refetch] = useUserAllPosts();
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic();
@@ -80,7 +82,7 @@ const AddPost = () => {
     if (isPostLoading) {
         return <div className='min-h-screen flex justify-center items-center'><span className="loading loading-spinner text-accent"></span></div>
     }
-    if (userAllPost.length >= 5) {
+    if (userAllPost.length >= 5 && !activeUser?.membership) {
         return <GetMember></GetMember>
     }
     return (
