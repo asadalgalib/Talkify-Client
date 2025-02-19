@@ -29,10 +29,10 @@ const Member = () => {
             setAmount(1.99);
         }
         if (pack === 'six') {
-            setAmount(5.99);
+            setAmount(9.99);
         }
         if (pack === 'year') {
-            setAmount(9.99);
+            setAmount(14.99);
         }
     }
 
@@ -59,13 +59,13 @@ const Member = () => {
                 </div>
                 <div className="form-control mt-3">
                     <label className="cursor-pointer label">
-                        <span className="label-text font-medium">6 Months pack $5.99</span>
+                        <span className="label-text font-medium">6 Months pack $9.99</span>
                         <input type="radio" name="option" value='six' onChange={handleAmount} className="radio" />
                     </label>
                 </div>
                 <div className="form-control mt-3">
                     <label className="cursor-pointer label">
-                        <span className="label-text font-medium">1 Year pack $9.99</span>
+                        <span className="label-text font-medium">1 Year pack $14.99</span>
                         <input type="radio" name="option" value='year' onChange={handleAmount} className="radio" />
                     </label>
                 </div>

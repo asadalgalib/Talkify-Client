@@ -6,6 +6,7 @@ import ShowAnnounce from '../Components/Pages/Home/ShowAnnounce';
 import useAllPost from '../Custom/Hooks/useAllPost';
 import { Helmet } from 'react-helmet';
 import Join from '../Components/Pages/Home/Join';
+import Pricing from '../Components/Pages/Home/Pricing';
 
 const HomeLayout = () => {
     const [allPost, isAllPostLoading, refetch, setPostQuery] = useAllPost();
@@ -33,7 +34,7 @@ const HomeLayout = () => {
                     <Tags></Tags>
                     <ShowAnnounce></ShowAnnounce>
                 </div>
-                <div className='overflow-y-scroll max-h-screen  flex-grow'>
+                <div className='overflow-y-scroll max-h-screen rounded-md  flex-grow'>
                     <AllPosts
                         allPost={allPost}
                         isAllPostLoading={isAllPostLoading}
@@ -44,6 +45,7 @@ const HomeLayout = () => {
                 </div>
             </div>
             <Join></Join>
+            <Pricing></Pricing>
         </div>
     );
 };
