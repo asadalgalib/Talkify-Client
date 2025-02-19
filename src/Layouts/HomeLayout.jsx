@@ -5,6 +5,7 @@ import Tags from '../Components/Pages/Home/Tags';
 import ShowAnnounce from '../Components/Pages/Home/ShowAnnounce';
 import useAllPost from '../Custom/Hooks/useAllPost';
 import { Helmet } from 'react-helmet';
+import Join from '../Components/Pages/Home/Join';
 
 const HomeLayout = () => {
     const [allPost, isAllPostLoading, refetch, setPostQuery] = useAllPost();
@@ -32,7 +33,7 @@ const HomeLayout = () => {
                     <Tags></Tags>
                     <ShowAnnounce></ShowAnnounce>
                 </div>
-                <div className='overflow-y-auto flex-grow'>
+                <div className='overflow-y-scroll max-h-screen  flex-grow'>
                     <AllPosts
                         allPost={allPost}
                         isAllPostLoading={isAllPostLoading}
@@ -42,6 +43,7 @@ const HomeLayout = () => {
                     </AllPosts>
                 </div>
             </div>
+            <Join></Join>
         </div>
     );
 };

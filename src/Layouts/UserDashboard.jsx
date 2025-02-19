@@ -59,7 +59,7 @@ const UserDashboard = () => {
                         }
                         <div className="divider divider-info mr-6"></div>
                         <li className='mb-1 text-lg font-medium'><NavLink to={'/'}>Home</NavLink></li>
-                        <li className='mb-1 text-lg font-medium'><NavLink to={'/'}>Membership</NavLink></li>
+                        <li className='mb-1 text-lg font-medium'><NavLink to={'/membership'}>Membership</NavLink></li>
                     </ul>
                     <button onClick={handleTheme} className="flex text-neutral mt-5 cursor-pointer gap-2 ">
                         <svg
